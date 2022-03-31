@@ -5,9 +5,38 @@ Keunggulan desa
 Pelayanan administrasi persuratan
 Pelayanan aspirasi 
 Data desa
+    -Data Wilayah Administratif
+    -Data Pendidikan dalam KK
+    -Data Pendidikan ditempuh
+    -Data Pekerjaan
+    -Data Agama
+    -Data Jenis Kelamin
+    -Data Warga Negara
 
 Desa NGGELE
 kec. Taliabu Barat Laut
 https://maps.app.goo.gl/qRu3C84o7eYKZTDK8
 
-sailor html template
+edulab html template
+
+Google Maps Javascript API
+
+==========
+database
+- profile_desa
+- sejarah_desa
+- peta_desa
+- keunggulan_desa
+- visi_misi
+- pemerintahan_desa CHECKPOINT
+- data_wilayah_administratif
+- data_pendidikan_dalam_kk
+- data_pekerjaan
+- data_agama
+- data_jenis_kelamin
+- data_warga_negara
+- pelayanan_administrasi_persuratan
+- pelayanan_aspirasi
+- berita
+- user
+- data_kk
