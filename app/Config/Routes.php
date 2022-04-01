@@ -38,7 +38,7 @@ $routes->get('/', 'Home::index');
 
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard
-$routes->get('admin-page', 'Admin::index');
+$routes->get('m-admin', 'Admin::index');
 
 /**
  * --------------------------------------------------------------------

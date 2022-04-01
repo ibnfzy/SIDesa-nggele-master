@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini accent-orange">
+<body class="hold-transition sidebar-mini accent-orange control-sidebar-slide-open layout-fixed sidebar-open">
     <div class="wrapper">
 
         <!-- Navbar -->
