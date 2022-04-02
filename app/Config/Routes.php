@@ -39,6 +39,17 @@ $routes->get('/', 'Home::index');
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard
 $routes->get('m-admin', 'Admin::index');
+// * Route admin 
+$routes->get('m-admin/admin', 'Admin::admin');
+$routes->get('m-admin/admin/add', 'Admin::add_admin');
+$routes->post('m-admin/admin/store', 'Admin::store_admin');
+$routes->get('m-admin/admin/edit/(:any)', 'Admin::edit_admin/$1');
+$routes->post('m-admin/admin/update/(:any)', 'Admin::update_admin/$1');
+$routes->get('m-admin/admin/delete/(:any)', 'Admin::delete_admin/$1');
+
+// ? Route untuk tampilan login
+// ? Route index login page
+$routes->get('login', 'Login::index');
 
 /**
  * --------------------------------------------------------------------
