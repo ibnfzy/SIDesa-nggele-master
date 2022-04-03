@@ -1,6 +1,9 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
+use App\Filters\Auth;
 
 class Filters extends BaseConfig
 {
@@ -10,6 +13,7 @@ class Filters extends BaseConfig
 		'csrf'     => \CodeIgniter\Filters\CSRF::class,
 		'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
+		'auth'          => Auth::class
 	];
 
 	// Always applied before every request
@@ -32,5 +36,7 @@ class Filters extends BaseConfig
 	// List filter aliases and any before/after uri patterns
 	// that they should run on, like:
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
-	public $filters = [];
+	public $filters = [
+		'auth' => ['before' => ['m-admin', 'm-admin/*']]
+	];
 }

@@ -50,6 +50,8 @@ $routes->get('m-admin/admin/delete/(:any)', 'Admin::delete_admin/$1');
 // ? Route untuk tampilan login
 // ? Route index login page
 $routes->get('login', 'Login::index');
+$routes->post('login/auth', 'Login::auth');
+$routes->get('logout', 'Login::logout');
 
 /**
  * --------------------------------------------------------------------
