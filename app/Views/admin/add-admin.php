@@ -23,7 +23,7 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <form action="<?= base_url('m-admin/admin/store') ?>" method="post">
+            <form action="<?= base_url('m-admin/admin/store') ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card card-primary">

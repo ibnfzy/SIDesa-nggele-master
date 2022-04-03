@@ -67,8 +67,7 @@
     <?php
     if (session()->getFlashdata('status')) {
         echo '<script>toastr["' .
-            session()->getFlashdata('type-status') . '"]("' . session()->getFlashdata('status') .
-            '", "' . session()->getFlashdata('message') . '")</script>';
+            session()->getFlashdata('type-status') . '"]("' . session()->getFlashdata('message') . '")</script>';
     }
     ?>
 
