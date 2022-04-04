@@ -23,7 +23,8 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <form action="<?= base_url('m-admin/admin/update') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('m-admin/admin/update/' . $admin['id_admin']) ?>" method="post"
+                enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card card-primary">
@@ -63,12 +64,12 @@
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" id="password" class="form-control"
-                                        value='<?= $admin['password'] ?>'>
+                                        placeholder="Password Lama">
                                 </div>
                                 <div class="form-group">
                                     <label for="confirm">Konfirmasi Password</label>
                                     <input type="password" name="confirm" id="confirm" class="form-control"
-                                        value="<?= $admin['password'] ?>">
+                                        placeholder="Password Lama">
                                 </div>
                             </div>
                             <div class="card-footer">

@@ -10,11 +10,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url('admin/plugins/fontawesome-free/css/all.min.css') ?>">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url('admin/plugins/toastr/toastr.min.css') ?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url('admin/dist/css/adminlte.min.css') ?>">
 </head>
 
 <body class="hold-transition login-page">
@@ -27,9 +29,10 @@
             <div class="card-body">
                 <p class="login-box-msg">Silahkan login untuk meakses dashboard</p>
 
-                <form action="" method="post">
+                <form action="<?= base_url('login/auth') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="username" class="form-control" placeholder="Username">
+                        <input id="username" name="username" type="username" class="form-control"
+                            placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -37,7 +40,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input id="password" name="password" type="password" class="form-control"
+                            placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -61,11 +65,42 @@
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="admin/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('admin/plugins/jquery/jquery.min.js') ?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <!-- Toastr -->
+    <script src="<?= base_url('admin/plugins/toastr/toastr.min.js') ?>"></script>
     <!-- AdminLTE App -->
-    <script src="admin/dist/js/adminlte.min.js"></script>
+    <script src="<?= base_url('admin/dist/js/adminlte.min.js') ?>"></script>
+
+    <?php
+    if (session()->getFlashdata('status')) {
+        echo '<script>toastr["' .
+            session()->getFlashdata('type-status') . '"]("' . session()->getFlashdata('message') . '")</script>';
+    }
+    ?>
+
+    <script>
+    // toastr["error"]("Error saat memasukkan file", "Error") success, info, warning, error
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    </script>
 </body>
 
 </html>

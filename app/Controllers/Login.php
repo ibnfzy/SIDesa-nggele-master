@@ -49,7 +49,7 @@ class Login extends BaseController
                 $admin->update($id, $data);
 
                 return redirect()->to(base_url('m-admin'))->with('type-status', 'info')
-                    ->with('message', 'Selamat Datang Kembali ' . $data['fullname']);
+                    ->with('message', 'Selamat Datang Kembali ' . $sessionData['fullname']);
             } else {
                 return redirect()->to(base_url('login'))->with('type-status', 'error')
                     ->with('message', 'Username atau Password tidak benar');

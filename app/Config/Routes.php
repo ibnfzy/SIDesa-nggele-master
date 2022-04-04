@@ -21,7 +21,7 @@ $routes->setDefaultController('Admin');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /**
  * --------------------------------------------------------------------
@@ -44,8 +44,12 @@ $routes->get('m-admin/admin', 'Admin::admin');
 $routes->get('m-admin/admin/add', 'Admin::add_admin');
 $routes->post('m-admin/admin/store', 'Admin::store_admin');
 $routes->get('m-admin/admin/edit/(:any)', 'Admin::edit_admin/$1');
-$routes->post('m-admin/admin/update/(:any)', 'Admin::update_admin/$1');
 $routes->get('m-admin/admin/delete/(:any)', 'Admin::delete_admin/$1');
+$routes->post('m-admin/admin/update/(:any)', 'Admin::update_admin/$1');
+
+// * Route Profile Desa
+$routes->get('m-admin/profil-desa', 'Admin::profil');
+$routes->get('m-admin/profil-desa/simpan/(:any)', 'Admin::profil_simpan/$1');
 
 // ? Route untuk tampilan login
 // ? Route index login page

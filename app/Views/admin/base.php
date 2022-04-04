@@ -65,7 +65,7 @@
 
     <!-- Memanggil Notifikasi Toastr -->
     <?php
-    if (session()->getFlashdata('status')) {
+    if (session()->getFlashdata('message')) {
         echo '<script>toastr["' .
             session()->getFlashdata('type-status') . '"]("' . session()->getFlashdata('message') . '")</script>';
     }
