@@ -17,26 +17,76 @@ Desa NGGELE
 kec. Taliabu Barat Laut
 https://maps.app.goo.gl/qRu3C84o7eYKZTDK8
 
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7975.839859995145!2d124.36849818370428!3d-1.767547322711609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d82987b0ac8699f%3A0xc337d3c98dbf17b!2sKantor%20Desa%20Nggele!5e0!3m2!1sid!2sid!4v1649136666584!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
 edulab html template
 
 Google Maps Javascript API
 
-==========
+========== !* b = Backend selesai | f = Frontend selesai
 database
-- profile_desa
-- sejarah_desa
-- peta_desa
-- keunggulan_desa
-- visi_misi
-- pemerintahan_desa CHECKPOINT
-- data_wilayah_administratif
-- data_pendidikan_dalam_kk
-- data_pekerjaan
-- data_agama
-- data_jenis_kelamin
-- data_warga_negara
-- pelayanan_administrasi_persuratan
-- pelayanan_aspirasi
-- berita
-- user
-- data_kk
+- profile_desa                          [b]
+- sejarah_desa                          [b]
+- peta_desa                             [b]
+- keunggulan_desa                       [b]
+- visi_misi                             [b]
+- pemerintahan_desa CHECKPOINT          [b]
+- pelayanan_administrasi_persuratan     []
+- pelayanan_aspirasi                    []
+- berita                                [b]
+- admin                                 [bf]
+- data_kk                               [] form peristiwa pada opensid
+
+-pelayanan_administrasi_persuratan
+    - table Format surat
+    - buat surat
+    - arsip surat
+
+-pelayanan aspirasi
+    - NIK
+    - isi aspirasi
+    - kategori aspirasi
+
+- tabel penduduk
+    - informasi penduduk
+        - id_penduduk 11
+        - NIK 16
+        - nama 30 
+        - Tempat Lahir 30
+        - Tanggal Lahir
+        - jenis Kelamin 15
+        - goldar 3
+        - alamat 50
+        - rt 2
+        - rw 2
+        - Agama 25
+        - status pernikahan 25
+        - Pekerjaan 30
+        - kewarganegaraan 3
+
+
+- table keluarga
+    =informasi keluarga
+        - id_keluarga 11 
+        - no. KK 16
+        - alamat 50
+        - rt 2
+        - rw 2 
+        - desa/kelurahan 50
+        - kecamatan 25
+        - kabupaten/kota 50 
+        - provinsi 50
+        - tanggal dikeluarkan
+
+    - detail informasi keluarga
+        - id_detail_keluarga
+        - id_keluarga
+        - id_penduduk
+        - status_perkawinan
+        - status_hubungan_dalam_keluarga
+        - kewarganegaraan
+        - no_paspor/no_kitas/no_kitap dokumen_imigrasi
+        - nama_bapak
+        - nama_ibu
+

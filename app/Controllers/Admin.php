@@ -7,6 +7,12 @@ use App\Models\M_profil;
 use App\Models\M_sejarah;
 use App\Models\M_visimisi;
 use App\Models\M_keunggulan;
+use App\Models\M_berita;
+use App\Models\M_peta;
+use App\Models\M_pemerintah;
+use App\Models\M_detail_keluarga;
+use App\Models\M_keluarga;
+use App\Models\M_penduduk;
 
 class Admin extends BaseController
 {
@@ -342,5 +348,301 @@ class Admin extends BaseController
         $keunggulan->delete($id);
         return redirect()->to(base_url('m-admin/keunggulan'))->with('type-status', 'success')
             ->with('message', `Keunggulan dengan ID $id telah dihapus`);
+    }
+
+    public function berita(): string
+    {
+        $berita = new M_berita();
+
+        $data = [
+            'title' => 'Berita Desa'
+        ];
+
+        $data['berita'] = $berita->findAll();
+
+        return view('admin/berita', $data);
+    }
+
+    public function add_berita(): string
+    {
+        $data = [
+            'title' => 'Tambah Berita'
+        ];
+
+        return view('admin/add-berita', $data);
+    }
+
+    public function store_berita(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $berita = new M_berita();
+
+        $img = (null !== $this->request->getFile('gambar')) ? $this->request->getFile('gambar') : null;
+
+        if ($img->isValid()) {
+            $data = [
+                'jdl_berita' => $this->request->getPost('judul'),
+                'isi_berita' => $this->request->getPost('editor'),
+                'thumbnail_berita' => $img->getName(),
+                'jenis_berita' => $this->request->getPost('jenis'),
+                'tgl_upload' => date('Y-m-d'),
+                'id_admin' => $_SESSION['id_admin']
+            ];
+
+            if ($img->isValid() && !$img->hasMoved()) {
+                $img->move(base_url('admin/uploads/'));
+            }
+
+            $berita->save($data);
+
+            return redirect()->to(base_url('m-admin/berita'))->with('type-status', 'success')
+                ->with('message', 'Berita baru telah ditembahkan');
+        } else {
+            return redirect()->to(base_url('m-admin/berita/add'))->with('type-status', 'error')
+                ->with('message', 'Gambar wajib diupload untuk berita desa');
+        }
+    }
+
+    public function edit_berita($id): string
+    {
+        $berita = new M_berita();
+
+        $data = [
+            'title' => 'Edit Berita'
+        ];
+
+        $data['berita'] = $berita->find($id);
+
+        return view('admin/berita/edit', $data);
+    }
+
+    public function update_berita($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $berita = new M_berita();
+
+        $img = (null !== $this->request->getFile('gambar')) ? $this->request->getFile('gambar') : null;
+
+        if (!$img->isValid()) {
+            $data = [
+                'jdl_berita' => $this->request->getPost('judul'),
+                'isi_berita' => $this->request->getPost('editor'),
+                'jenis_berita' => $this->request->getPost('jenis'),
+                'tgl_upload' => date('Y-m-d'),
+                'id_admin' => $_SESSION['id_admin']
+            ];
+
+            $berita->update($id, $data);
+
+            return redirect()->to(base_url('m-admin/berita'))->with('type-status', 'success')
+                ->with('message', 'Berita telah diubah');
+        } else if ($img->isValid()) {
+            $data = [
+                'jdl_berita' => $this->request->getPost('judul'),
+                'isi_berita' => $this->request->getPost('editor'),
+                'thumbnail_berita' => $img->getName(),
+                'jenis_berita' => $this->request->getPost('jenis'),
+                'tgl_upload' => date('Y-m-d'),
+                'id_admin' => $_SESSION['id_admin']
+            ];
+
+            if ($img->isValid() && !$img->hasMoved()) {
+                $img->move(base_url('admin/uploads/'));
+            }
+
+            $berita->update($id, $data);
+
+            return redirect()->to(base_url('m-admin/berita'))->with('type-status', 'success')
+                ->with('message', 'Berita telah diubah');
+        } else {
+            return redirect()->to(base_url('m-admin/berita/edit/' . $id))->with('type-status', 'error')
+                ->with('message', 'Form tidak boleh kosong');
+        }
+    }
+
+    public function delete_berita($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $berita = new M_berita();
+
+        $berita->delete($id);
+
+        return redirect()->to(base_url('m-admin/berita'))->with('type-status', 'success')
+            ->with('message', `Berita dengan ID $id telah dihapus`);
+    }
+
+    public function peta_desa($id = ''): string
+    {
+        $peta = new M_peta();
+
+        $data = [
+            'title' => 'Peta'
+        ];
+
+        $data['peta'] = $peta->find($id);
+
+        return view('admin/peta', $data);
+    }
+
+    public function update_peta($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $peta = new M_peta();
+
+        $data = [
+            'keterangan' => $this->request->getPost('keterangan'),
+            'url' => $this->request->getPost('url'),
+        ];
+
+        return redirect()->to(base_url('m-admin/peta-desa'))->with('type-status', 'success')
+            ->with('message', 'Peta Desa telah diperbarui');
+    }
+
+    public function pemerintah_desa($id = ''): string
+    {
+        $pemerintah = new M_pemerintah();
+
+        $data = [
+            'title' => 'Pemerintah Desa'
+        ];
+
+        $data['pemerintah'] = $pemerintah->find($id);
+
+        return view('admin/pemerintah', $data);
+    }
+
+    public function update_pemerintah($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $pemerintah = new M_pemerintah();
+
+        $data = [
+            'tgl_upload' => date('Y-m-d'),
+            'isi_pemerintah_desa' => $this->request->getPost('editor'),
+            'id_admin' => $_SESSION['id_admin']
+        ];
+
+        $pemerintah->update($id, $data);
+
+        return redirect()->to(base_url('m-admin/pemerintah-desa'))->with('type-status', 'success')
+            ->with('message', 'Pemerintah Desa telah diperbarui');
+    }
+
+    public function penduduk(): string
+    {
+        $penduduk = new M_penduduk();
+
+        $data = [
+            'title' => 'Table Penduduk'
+        ];
+
+        $data['penduduk'] = $penduduk->findAll();
+
+        return view('admin/penduduk', $data);
+    }
+
+    public function add_penduduk(): string
+    {
+        $data = [
+            'title' => 'Tambah Penduduk'
+        ];
+
+        return view('admin/add-penduduk', $data);
+    }
+
+    public function store_penduduk(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $penduduk = new M_penduduk();
+
+        $data = [
+            'NIK' => $this->request->getPost('nik'),
+            'nama' => $this->request->getPost('nama'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'goldar' => $this->request->getPost('goldar'),
+            'alamat' => $this->request->getPost('alamat'),
+            'rt' => $this->request->getPost('rt'),
+            'rw' => $this->request->getPost('rw'),
+            'agama' => $this->request->getPost('agama'),
+            'status_pernikahan' => $this->request->getPost('status_pernikahan'),
+            'pekerjaan' => $this->request->getPost('pekerjaan'),
+            'kewarganegaraan' => $this->request->getPost('kewarganegaraan')
+        ];
+
+        $penduduk->save($data);
+
+        return redirect()->to(base_url('m-admin/penduduk'))->with('type-status', 'success')
+            ->with('message', 'Penduduk telah ditembahkan');
+    }
+
+    public function edit_penduduk($id): string
+    {
+        $penduduk = new M_penduduk();
+
+        $data = [
+            'title' => 'Edit Penduduk'
+        ];
+
+        $data['penduduk'] = $penduduk->find($id);
+
+        return view('admin/edit-penduduk', $data);
+    }
+
+    public function update_penduduk($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $penduduk = new M_penduduk();
+
+        $data = [
+            'NIK' => $this->request->getPost('nik'),
+            'nama' => $this->request->getPost('nama'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'goldar' => $this->request->getPost('goldar'),
+            'alamat' => $this->request->getPost('alamat'),
+            'rt' => $this->request->getPost('rt'),
+            'rw' => $this->request->getPost('rw'),
+            'agama' => $this->request->getPost('agama'),
+            'status_pernikahan' => $this->request->getPost('status_pernikahan'),
+            'pekerjaan' => $this->request->getPost('pekerjaan'),
+            'kewarganegaraan' => $this->request->getPost('kewarganegaraan')
+        ];
+
+        $penduduk->update($id, $data);
+
+        return redirect()->to(base_url('m-admin/penduduk'))->with('type-status', 'success')
+            ->with('message', 'Penduduk telah diperbarui');
+    }
+
+    public function detail_penduduk($id): string
+    {
+        $penduduk = new M_penduduk();
+
+        $data = [
+            'title' => 'Edit Penduduk'
+        ];
+
+        $data['penduduk'] = $penduduk->find($id);
+
+        return view('admin/detail-penduduk', $data);
+    }
+
+    public function detele_penduduk($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $penduduk = new M_penduduk();
+
+        $penduduk->delete($id);
+
+        return redirect()->to(base_url('m-admin/penduduk'))->with('type-status', 'success')
+            ->with('message', `Penduduk dengan ID $id telah dihapus`);
+    }
+
+    public function keluarga(): string
+    {
+        $keluarga = new M_keluarga();
+
+        $data = [
+            'title' => 'Table Kartu Keluarga'
+        ];
+
+        $data['keluarga'] = $keluarga->findAll();
+
+        return view('admin/keluarga', $data);
     }
 }
