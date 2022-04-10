@@ -68,7 +68,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(base_url('admin/uploads/'));
+                $img->move(ROOTPATH . 'public/admin/uploads');
             }
 
             $admin->save($data);
@@ -140,17 +140,63 @@ class Admin extends BaseController
             ->with('message', `Admin dengan ID $id telah dihapus`);
     }
 
-    public function profil_desa($id = ''): string
+    public function profil_desa($id): string
     {
         $profil = new M_profil();
 
         $data = [
-            'title' => 'Profil Desa'
+            'title' => 'Profil Desa',
+            'parentdir' => 'Profil Desa',
+            'js' => 'admin/js/summernote'
         ];
 
         $data['profil'] = $profil->find($id);
 
         return view('admin/profil', $data);
+    }
+
+    public function update_logo_desa($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $profil = new M_profil();
+
+        $img = (null !== $this->request->getFile('gambar')) ? $this->request->getFile('gambar') : null;
+
+        if ($img->isValid()) {
+            $data = [
+                'tgl_upload' => date('Y-m-d'),
+                'gambar' => $img->getName(),
+                'id_admin' => $_SESSION['id_admin']
+            ];
+
+            if ($img->isValid() && !$img->hasMoved()) {
+                $img->move(ROOTPATH . 'public/admin/uploads');
+            }
+
+            $profil->update($id, $data);
+
+            return redirect()->to(base_url('m-admin/profil-desa/' . $id))->with('type-status', 'success')
+                ->with('message', 'Profil telah diperbarui');
+        } else {
+            return redirect()->to(base_url('m-admin/profil-desa/' . $id))->with('type-status', 'error')
+                ->with('message', 'Profil gagal diperbarui');
+        }
+    }
+
+    public function update_informasi_desa($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $profil = new M_profil();
+
+        $data = [
+            'tgl_upload' => date('Y-m-d'),
+            'kontak' => $this->request->getPost('kontak'),
+            'alamat_kantor' => $this->request->getPost('alamat'),
+            'id_admin' => $_SESSION['id_admin']
+        ];
+
+        $profil->update($id, $data);
+
+        return redirect()->to(base_url('m-admin/profil-desa/' . $id))->with('type-status', 'success')
+            ->with('message', 'Profil telah diperbarui');
     }
 
     /**
@@ -168,7 +214,7 @@ class Admin extends BaseController
 
         $profil->update($id, $data);
 
-        return redirect()->to(base_url('m-admin/profil-desa'))->with('type-status', 'success')
+        return redirect()->to(base_url('m-admin/profil-desa/' . $id))->with('type-status', 'success')
             ->with('message', 'Profil telah diperbarui');
     }
 
@@ -177,7 +223,9 @@ class Admin extends BaseController
         $sejarah = new M_sejarah();
 
         $data = [
-            'title' => 'Sejarah Desa'
+            'title' => 'Sejarah Desa',
+            'parentdir' => 'Profil Desa',
+            'js' => 'admin/js/summernote'
         ];
 
         $data['sejarah'] = $sejarah->find($id);
@@ -197,7 +245,7 @@ class Admin extends BaseController
 
         $sejarah->update($id, $data);
 
-        return redirect()->to(base_url('m-admin/sejarah-desa'))->with('type-status', 'success')
+        return redirect()->to(base_url('m-admin/sejarah-desa/' . $id))->with('type-status', 'success')
             ->with('message', 'Sejarah Desa telah diperbarui');
     }
 
@@ -389,7 +437,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(base_url('admin/uploads/'));
+                $img->move(ROOTPATH . 'public/admin/uploads');
             }
 
             $berita->save($data);

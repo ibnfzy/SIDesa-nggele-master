@@ -37,6 +37,8 @@ database
 - berita                                [b]
 - admin                                 [bf]
 - data_kk                               [] form peristiwa pada opensid
+    - table penduduk                    [b]
+    - table keluarga                    []
 
 -pelayanan_administrasi_persuratan
     - table Format surat

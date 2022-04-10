@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\M_admin;
+use App\Models\M_profil;
 
 class Login extends BaseController
 {
@@ -20,11 +21,17 @@ class Login extends BaseController
 
         $admin = new M_admin();
 
+        $profil = new M_profil();
+
         $username = $this->request->getPost('username');
 
         $password = $this->request->getPost('password');
 
         $data = $admin->where('username', $username)->first();
+
+        $datax = $profil->find(1);
+
+        $data['logo'] = $datax['gambar'];
 
         if ($data) {
             $password_data = $data['password'];
@@ -37,6 +44,8 @@ class Login extends BaseController
                     'id_admin' => $data['id_admin'],
                     'fullname' => $data['fullname'],
                     'username' => $data['username'],
+                    'gambar' => $data['gambar'],
+                    'logo' => $data['logo'],
                     'logged_in' => TRUE
                 ];
 

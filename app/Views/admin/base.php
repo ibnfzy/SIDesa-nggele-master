@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="<?= base_url('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= base_url('admin/plugins/toastr/toastr.min.css') ?>">
+    <!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url('admin/plugins/summernote/summernote-bs4.min.css') ?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('admin/dist/css/adminlte.min.css') ?>">
 </head>
@@ -60,6 +62,8 @@
     <script src="<?= base_url('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
     <!-- Toastr -->
     <script src="<?= base_url('admin/plugins/toastr/toastr.min.js') ?>"></script>
+    <!-- Summernote -->
+    <script src="<?= base_url('admin/plugins/summernote/summernote-bs4.min.js') ?>"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url('admin/dist/js/adminlte.min.js') ?>"></script>
 

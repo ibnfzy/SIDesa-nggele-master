@@ -11,6 +11,9 @@ class M_profil extends Model
     protected $allowedFields = [
         'tgl_upload',
         'isi_profile',
+        'kontak',
+        'alamat_kantor',
+        'gambar',
         'id_admin'
     ];
 }

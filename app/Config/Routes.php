@@ -39,6 +39,7 @@ $routes->get('/', 'Home::index');
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard
 $routes->get('m-admin', 'Admin::index');
+
 // * Route admin 
 $routes->get('m-admin/admin', 'Admin::admin');
 $routes->get('m-admin/admin/add', 'Admin::add_admin');
@@ -48,8 +49,15 @@ $routes->get('m-admin/admin/delete/(:any)', 'Admin::delete_admin/$1');
 $routes->post('m-admin/admin/update/(:any)', 'Admin::update_admin/$1');
 
 // * Route Profile Desa
-$routes->get('m-admin/profil-desa', 'Admin::profil');
-$routes->get('m-admin/profil-desa/simpan/(:any)', 'Admin::profil_simpan/$1');
+$routes->get('m-admin/profil-desa/(:any)', 'Admin::profil_desa/$1');
+$routes->post('m-admin/profil-desa/simpan/(:any)', 'Admin::update_profil_desa/$1');
+$routes->post('m-admin/profil-desa/simpan-informasi/(:any)', 'Admin::update_informasi_desa/$1');
+$routes->post('m-admin/profil-desa/simpan-logo/(:any)', 'Admin::update_logo_desa/$1');
+
+// * Route Sejarah Desa
+$routes->get('m-admin/sejarah-desa/(:any)', 'Admin::sejarah_desa/$1');
+$routes->post('m-admin/sejarah-desa/simpan/(:any)', 'Admin::update_sejarah_desa/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page
