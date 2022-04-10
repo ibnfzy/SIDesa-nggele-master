@@ -58,6 +58,10 @@ $routes->post('m-admin/profil-desa/simpan-logo/(:any)', 'Admin::update_logo_desa
 $routes->get('m-admin/sejarah-desa/(:any)', 'Admin::sejarah_desa/$1');
 $routes->post('m-admin/sejarah-desa/simpan/(:any)', 'Admin::update_sejarah_desa/$1');
 
+// * Route Peta Desa
+$routes->get('m-admin/peta-desa/(:any)', 'Admin::peta_desa/$1');
+$routes->post('m-admin/peta-desa/simpan/(:any)', 'Admin::update_peta/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page

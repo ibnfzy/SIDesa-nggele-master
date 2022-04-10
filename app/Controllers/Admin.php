@@ -521,7 +521,8 @@ class Admin extends BaseController
         $peta = new M_peta();
 
         $data = [
-            'title' => 'Peta'
+            'title' => 'Peta Desa',
+            'parentdir' => 'Profil Desa',
         ];
 
         $data['peta'] = $peta->find($id);
@@ -538,7 +539,9 @@ class Admin extends BaseController
             'url' => $this->request->getPost('url'),
         ];
 
-        return redirect()->to(base_url('m-admin/peta-desa'))->with('type-status', 'success')
+        $peta->update($id, $data);
+
+        return redirect()->to(base_url('m-admin/peta-desa/' . $id))->with('type-status', 'success')
             ->with('message', 'Peta Desa telah diperbarui');
     }
 
