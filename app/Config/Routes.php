@@ -62,6 +62,15 @@ $routes->post('m-admin/sejarah-desa/simpan/(:any)', 'Admin::update_sejarah_desa/
 $routes->get('m-admin/peta-desa/(:any)', 'Admin::peta_desa/$1');
 $routes->post('m-admin/peta-desa/simpan/(:any)', 'Admin::update_peta/$1');
 
+// * Route Keunggulan Desa
+$routes->get('m-admin/keunggulan-desa/', 'Admin::keunggulan');
+$routes->get('m-admin/keunggulan-desa/add', 'Admin::add_keunggulan');
+$routes->post('m-admin/keunggulan-desa/store', 'Admin::store_keunggulan');
+$routes->get('m-admin/keunggulan-desa/edit/(:any)', 'Admin::edit_keunggulan/$1');
+$routes->post('m-admin/keunggulan-desa/update/(:any)', 'Admin::update_keunggulan/$1');
+$routes->get('m-admin/keunggulan-desa/delete/(:any)', 'Admin::delete_keunggulan/$1');
+$routes->get('m-admin/keunggulan-desa/detail/(:any)', 'Admin::detail_keunggulan/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page

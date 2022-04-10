@@ -284,12 +284,27 @@ class Admin extends BaseController
 
         $data = [
             'title' => 'Keunggulan Desa',
-            'js' => 'admin/js/datatables'
+            'js' => 'admin/js/datatables',
+            'parentdir' => 'Profil Desa',
+            'link' => 'm-admin/keunggulan-desa/delete/'
         ];
 
         $data['keunggulan'] = $keunggulan->findAll();
 
         return view('admin/keunggulan', $data);
+    }
+
+    public function detail_keunggulan($id): string
+    {
+        $keunggulan = new M_keunggulan();
+
+        $data = [
+            'title' => 'Detail Keunggulan'
+        ];
+
+        $data['keunggulan'] = $keunggulan->find($id);
+
+        return view('admin/detail-keunggulan', $data);
     }
 
     public function add_keunggulan(): string
@@ -319,7 +334,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(base_url('admin/uploads/'));
+                $img->move(ROOTPATH . 'public/admin/uploads');
             }
 
             $keunggulan->save($data);
@@ -341,9 +356,9 @@ class Admin extends BaseController
             'title' => 'Edit Keunggulan'
         ];
 
-        $data['admin'] = $keunggulan->find($id);
+        $data['keunggulan'] = $keunggulan->find($id);
 
-        return view('admin/edit-admin', $data);
+        return view('admin/edit-keunggulan', $data);
     }
 
     public function update_keunggulan($id): \CodeIgniter\HTTP\RedirectResponse
@@ -378,7 +393,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(base_url('admin/uploads/'));
+                $img->move(ROOTPATH . 'public/admin/uploads');
             }
 
             return redirect()->to(base_url('m-admin/keunggulan'))->with('type-status', 'success')

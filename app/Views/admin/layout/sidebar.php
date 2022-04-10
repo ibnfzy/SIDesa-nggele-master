@@ -53,7 +53,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('m-admin/keunggulan-desa/') ?>"
+                                class="nav-link <?= $active = ($title == 'Keunggulan Desa') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Keunggulan Desa</p>
                             </a>
