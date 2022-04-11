@@ -37,7 +37,7 @@
                         <div class="card-body p-0">
                             <div class="mailbox-read-info">
                                 <h6>
-                                    <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span>
+                                    <span class="mailbox-read-time float-right"><?= $sejarah['tgl_upload'] ?></span>
                                 </h6>
                             </div>
                             <!-- /.mailbox-read-info -->

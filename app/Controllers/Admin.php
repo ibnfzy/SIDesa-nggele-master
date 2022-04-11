@@ -299,7 +299,8 @@ class Admin extends BaseController
         $keunggulan = new M_keunggulan();
 
         $data = [
-            'title' => 'Detail Keunggulan'
+            'title' => 'Detail Keunggulan',
+            'parentdir' => 'Profil Desa'
         ];
 
         $data['keunggulan'] = $keunggulan->find($id);
@@ -310,7 +311,9 @@ class Admin extends BaseController
     public function add_keunggulan(): string
     {
         $data = [
-            'title' => 'Tambah Keunggulan Desa'
+            'title' => 'Tambah Keunggulan Desa',
+            'js' => 'admin/js/summernote',
+            'parentdir' => 'Profil Desa',
         ];
 
         return view('admin/add-keunggulan', $data);
@@ -339,11 +342,11 @@ class Admin extends BaseController
 
             $keunggulan->save($data);
 
-            return redirect()->to(base_url('m-admin/keunggulan'))->with('type-status', 'success')
+            return redirect()->to(base_url('m-admin/keunggulan-desa'))->with('type-status', 'success')
                 ->with('message', 'Keunggulan baru telah ditembahkan');
         } else {
 
-            return redirect()->to(base_url('m-admin/keunggulan/add'))->with('type-status', 'error')
+            return redirect()->to(base_url('m-admin/keunggulan-desa/add'))->with('type-status', 'error')
                 ->with('message', 'Gambar wajib diupload untuk keunggulan desa');
         }
     }
@@ -353,7 +356,9 @@ class Admin extends BaseController
         $keunggulan = new M_keunggulan();
 
         $data = [
-            'title' => 'Edit Keunggulan'
+            'title' => 'Edit Keunggulan',
+            'js' => 'admin/js/summernote',
+            'parentdir' => 'Profil Desa'
         ];
 
         $data['keunggulan'] = $keunggulan->find($id);
@@ -379,7 +384,7 @@ class Admin extends BaseController
 
             $keunggulan->update($id, $data);
 
-            return redirect()->to(base_url('m-admin/keunggulan'))->with('type-status', 'success')
+            return redirect()->to(base_url('m-admin/keunggulan-desa'))->with('type-status', 'success')
                 ->with('message', 'Keunggulan telah diubah');
         } else if ($img->isValid()) {
 
@@ -396,10 +401,10 @@ class Admin extends BaseController
                 $img->move(ROOTPATH . 'public/admin/uploads');
             }
 
-            return redirect()->to(base_url('m-admin/keunggulan'))->with('type-status', 'success')
+            return redirect()->to(base_url('m-admin/keunggulan-desa'))->with('type-status', 'success')
                 ->with('message', 'Keunggulan telah diubah');
         } else {
-            return redirect()->to(base_url('m-admin/keunggulan/edit/' . $id))->with('type-status', 'error')
+            return redirect()->to(base_url('m-admin/keunggulan-desa/edit/' . $id))->with('type-status', 'error')
                 ->with('message', 'Form tidak boleh kosong');
         }
     }
@@ -409,7 +414,7 @@ class Admin extends BaseController
         $keunggulan = new M_keunggulan();
 
         $keunggulan->delete($id);
-        return redirect()->to(base_url('m-admin/keunggulan'))->with('type-status', 'success')
+        return redirect()->to(base_url('m-admin/keunggulan-desa'))->with('type-status', 'success')
             ->with('message', `Keunggulan dengan ID $id telah dihapus`);
     }
 
