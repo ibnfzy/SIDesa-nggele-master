@@ -19,7 +19,8 @@ class Admin extends BaseController
     public function index(): string
     {
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'parentdir' => ''
         ];
         return view('admin/dashboard', $data);
     }
@@ -604,7 +605,9 @@ class Admin extends BaseController
         $penduduk = new M_penduduk();
 
         $data = [
-            'title' => 'Table Penduduk'
+            'title' => 'Table Penduduk',
+            'js' => 'admin/js/datatables',
+            'parentdir' => 'Kependudukan'
         ];
 
         $data['penduduk'] = $penduduk->findAll();
@@ -615,7 +618,9 @@ class Admin extends BaseController
     public function add_penduduk(): string
     {
         $data = [
-            'title' => 'Tambah Penduduk'
+            'title' => 'Tambah Penduduk',
+            'parentdir' => 'Kependudukan',
+            'js' => 'admin/js/form'
         ];
 
         return view('admin/add-penduduk', $data);
@@ -652,7 +657,9 @@ class Admin extends BaseController
         $penduduk = new M_penduduk();
 
         $data = [
-            'title' => 'Edit Penduduk'
+            'title' => 'Edit Penduduk',
+            'parentdir' => 'Kependudukan',
+            'js' => 'admin/js/form'
         ];
 
         $data['penduduk'] = $penduduk->find($id);
@@ -691,7 +698,9 @@ class Admin extends BaseController
         $penduduk = new M_penduduk();
 
         $data = [
-            'title' => 'Edit Penduduk'
+            'title' => 'Edit Penduduk',
+            'parentdir' => 'Kependudukan',
+            'js' => 'admin/js/form'
         ];
 
         $data['penduduk'] = $penduduk->find($id);

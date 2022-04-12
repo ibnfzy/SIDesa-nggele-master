@@ -88,6 +88,15 @@ $routes->get('m-admin/berita/edit/(:any)', 'Admin::edit_berita/$1');
 $routes->post('m-admin/berita/update/(:any)', 'Admin::update_berita/$1');
 $routes->get('m-admin/berita/delete/(:any)', 'Admin::delete_berita/$1');
 
+// * Route Penduduk
+$routes->get('m-admin/penduduk', 'Admin::penduduk');
+$routes->get('m-admin/penduduk/add', 'Admin::add_penduduk');
+$routes->post('m-admin/penduduk/store', 'Admin::store_penduduk');
+$routes->get('m-admin/penduduk/edit/(:any)', 'Admin::edit_penduduk/$1');
+$routes->post('m-admin/penduduk/update/(:any)', 'Admin::update_penduduk/$1');
+$routes->get('m-admin/penduduk/delete/(:any)', 'Admin::detele_penduduk/$1');
+$routes->get('m-admin/penduduk/detail/(:any)', 'Admin::detail_penduduk/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page

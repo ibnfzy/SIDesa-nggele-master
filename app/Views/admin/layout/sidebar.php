@@ -21,6 +21,32 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="#" class="nav-link <?= $active = ($parentdir == 'Kependudukan') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            Kependudukan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('m-admin/penduduk') ?>"
+                                class="nav-link <?= $active = ($title == 'Table Penduduk') ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Penduduk</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Keluarga</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- Profile Desa -->
                 <li class="nav-item">
                     <a href="#" class="nav-link <?= $active = ($parentdir == 'Profil Desa') ? 'active' : '' ?>">

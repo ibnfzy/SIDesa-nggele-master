@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="<?= base_url('admin/plugins/toastr/toastr.min.css') ?>">
     <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url('admin/plugins/summernote/summernote-bs4.min.css') ?>">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet"
+        href="<?= base_url('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?= base_url('admin/plugins/select2/css/select2.min.css') ?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('admin/dist/css/adminlte.min.css') ?>">
 </head>
@@ -47,6 +52,8 @@
     <script src="<?= base_url('admin/plugins/jquery/jquery.min.js') ?>"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <!-- Moment.js -->
+    <script src="<?= base_url('admin/plugins/moment/moment.min.js') ?>"></script>
     <!-- DataTables  & Plugins -->
     <script src="<?= base_url('admin/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
     <script src="<?= base_url('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
@@ -64,6 +71,11 @@
     <script src="<?= base_url('admin/plugins/toastr/toastr.min.js') ?>"></script>
     <!-- Summernote -->
     <script src="<?= base_url('admin/plugins/summernote/summernote-bs4.min.js') ?>"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="<?= base_url('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>">
+    </script>
+    <!-- Select2 -->
+    <script src="<?= base_url('admin/plugins/select2/js/select2.full.min.js') ?>"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url('admin/dist/js/adminlte.min.js') ?>"></script>
 
