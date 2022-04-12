@@ -71,6 +71,14 @@ $routes->post('m-admin/keunggulan-desa/update/(:any)', 'Admin::update_keunggulan
 $routes->get('m-admin/keunggulan-desa/delete/(:any)', 'Admin::delete_keunggulan/$1');
 $routes->get('m-admin/keunggulan-desa/detail/(:any)', 'Admin::detail_keunggulan/$1');
 
+// * Route Visi Misi Desa
+$routes->get('m-admin/visimisi/(:any)', 'Admin::visi_misi/$1');
+$routes->post('m-admin/visimisi/simpan/(:any)', 'Admin::update_visi_misi/$1');
+
+// * Route Pemerintah Desa
+$routes->get('m-admin/pemerintah/(:any)', 'Admin::pemerintah_desa/$1');
+$routes->post('m-admin/pemerintah/simpan/(:any)', 'Admin::update_pemerintah/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page

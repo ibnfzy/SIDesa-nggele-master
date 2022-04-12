@@ -23,7 +23,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Profile Desa -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $active = (isset($parentdir)) ? 'active' : '' ?>">
+                    <a href="#" class="nav-link <?= $active = ($parentdir == 'Profil Desa') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-info"></i>
                         <p>
                             Profile Desa
@@ -63,7 +63,7 @@
                 </li>
                 <!-- Pemerintahan Desa -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?= $active = ($parentdir == 'Pemerintah Desa') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-building"></i>
                         <p>
                             Pemerintahan Desa
@@ -72,7 +72,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('m-admin/visimisi/1') ?>"
+                                class="nav-link <?= $active = ($title == 'Visi & Misi Desa') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Visi & Misi</p>
                             </a>

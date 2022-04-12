@@ -254,7 +254,8 @@ class Admin extends BaseController
         $visimisi = new M_visimisi();
 
         $data = [
-            'title' => 'Visi & Misi Desa'
+            'title' => 'Visi & Misi Desa',
+            'parentdir' => 'Pemerintah Desa',
         ];
 
         $data['visimisi'] = $visimisi->find($id);
@@ -274,7 +275,7 @@ class Admin extends BaseController
 
         $visimisi->update($id, $data);
 
-        return redirect()->to(base_url('m-admin/visimisi-desa'))->with('type-status', 'success')
+        return redirect()->to(base_url('m-admin/visimisi/' . $id))->with('type-status', 'success')
             ->with('message', 'Visi & Misi Desa telah diperbarui');
     }
 
@@ -570,7 +571,8 @@ class Admin extends BaseController
         $pemerintah = new M_pemerintah();
 
         $data = [
-            'title' => 'Pemerintah Desa'
+            'title' => 'Pemerintah Desa',
+            'parentdir' => 'Pemerintah Desa'
         ];
 
         $data['pemerintah'] = $pemerintah->find($id);
@@ -590,7 +592,7 @@ class Admin extends BaseController
 
         $pemerintah->update($id, $data);
 
-        return redirect()->to(base_url('m-admin/pemerintah-desa'))->with('type-status', 'success')
+        return redirect()->to(base_url('m-admin/pemerintah/' . $id))->with('type-status', 'success')
             ->with('message', 'Pemerintah Desa telah diperbarui');
     }
 
