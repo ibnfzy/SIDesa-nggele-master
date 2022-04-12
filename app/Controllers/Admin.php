@@ -424,7 +424,8 @@ class Admin extends BaseController
         $berita = new M_berita();
 
         $data = [
-            'title' => 'Berita Desa'
+            'title' => 'Berita Desa',
+            'js' => 'admin/js/datatables'
         ];
 
         $data['berita'] = $berita->findAll();
@@ -435,7 +436,8 @@ class Admin extends BaseController
     public function add_berita(): string
     {
         $data = [
-            'title' => 'Tambah Berita'
+            'title' => 'Tambah Berita',
+            'js' => 'admin/js/summernote'
         ];
 
         return view('admin/add-berita', $data);
@@ -476,7 +478,8 @@ class Admin extends BaseController
         $berita = new M_berita();
 
         $data = [
-            'title' => 'Edit Berita'
+            'title' => 'Edit Berita',
+            'js' => 'admin/js/summernote'
         ];
 
         $data['berita'] = $berita->find($id);

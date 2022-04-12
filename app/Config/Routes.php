@@ -79,6 +79,15 @@ $routes->post('m-admin/visimisi/simpan/(:any)', 'Admin::update_visi_misi/$1');
 $routes->get('m-admin/pemerintah/(:any)', 'Admin::pemerintah_desa/$1');
 $routes->post('m-admin/pemerintah/simpan/(:any)', 'Admin::update_pemerintah/$1');
 
+// * Route Berita
+$routes->get('m-admin/berita', 'Admin::berita');
+$routes->get('m-admin/berita/add', 'Admin::add_berita');
+$routes->post('m-admin/berita/store', 'Admin::store_berita');
+$routes->get('m-admin/berita/detail/(:any)', 'Admin::detail_berita/$1');
+$routes->get('m-admin/berita/edit/(:any)', 'Admin::edit_berita/$1');
+$routes->post('m-admin/berita/update/(:any)', 'Admin::update_berita/$1');
+$routes->get('m-admin/berita/delete/(:any)', 'Admin::delete_berita/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page

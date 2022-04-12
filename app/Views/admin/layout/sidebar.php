@@ -81,7 +81,8 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('m-admin/pemerintah/1') ?>"
+                                class="nav-link <?= $active = ($title == 'Pemerintah Desa') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pemerintahan Desa</p>
                             </a>
@@ -115,7 +116,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?= base_url('m-admin/berita') ?>"
+                        class="nav-link <?= $active = ($title == 'Berita Desa') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Berita

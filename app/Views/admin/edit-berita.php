@@ -6,14 +6,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <a href="<?= base_url('m-admin/keunggulan-desa') ?>"
-                        class="btn btn-block btn-warning btn-flat">Kembali</a>
+                    <a href="<?= base_url('m-admin/berita') ?>" class="btn btn-block btn-warning btn-flat">Kembali</a>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item">Keunggulan Desa</li>
-                        <li class="breadcrumb-item active">Add Keunggulan Desa</li>
+                        <li class="breadcrumb-item">Berita Desa</li>
+                        <li class="breadcrumb-item active">Edit Berita Desa</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -24,32 +23,34 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <form action="<?= base_url('m-admin/keunggulan-desa/store') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('m-admin/berita/update/' . $berita['id_berita']) ?>" method="post"
+                enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card card-warning">
                             <div class="card-header">
-                                <h3 class="card-title">Upload Gambar</h3>
+                                <h3 class="card-title">Upload Thumbnail</h3>
                             </div>
                             <div class="card-body">
-                                <input type="file" name="gambar" id="gambar" required>
+                                <input type="file" name="gambar" id="gambar">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="card card-warning">
                             <div class="card-header">
-                                <h3 class="card-title">Form Input Detail Keunggulan</h3>
+                                <h3 class="card-title">Form Input Detail Berita</h3>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="fullname">Judul Keunggulan</label>
-                                    <input type="text" name="judul" id="judul" class="form-control" required>
+                                    <label for="fullname">Judul Berita</label>
+                                    <input type="text" name="judul" id="judul" class="form-control"
+                                        value="<?= $berita['jdl_berita'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="jenis">Jenis</label>
-                                    <select name="jenis" id="jenis" class="form-control" required>
-                                        <option value="pertanian">Pertanian</option>
+                                    <select name="jenis" id="jenis" class="form-control">
+                                        <option value="pengumuman">Pengumuman</option>
                                     </select>
                                 </div>
                             </div>
@@ -71,15 +72,16 @@
                         <div class="card-body p-0">
                             <div class="mailbox-read-info">
                                 <h6>
-                                    <span class="mailbox-read-time float-right">Akan diupload pada tanggal
-                                        <?= date('Y-m-d') ?></span>
+                                    <span class="mailbox-read-time float-right">Diupload pada tanggal
+                                        <?= $berita['tgl_upload'] ?></span>
                                 </h6>
                             </div>
                             <!-- /.mailbox-read-info -->
                             <!-- /.mailbox-controls -->
                             <div class="mailbox-read-message">
                                 <!-- isi sejarah -->
-                                <textarea name="editor" id="editor" cols="30" rows="10" required></textarea>
+                                <textarea name="editor" id="editor" cols="30"
+                                    rows="10"><?= $berita['isi_berita'] ?></textarea>
                             </div>
                             <!-- /.mailbox-read-message -->
                         </div>
