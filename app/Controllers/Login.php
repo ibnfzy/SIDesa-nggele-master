@@ -27,8 +27,10 @@ class Login extends BaseController
 
         $password = $this->request->getPost('password');
 
+        //  ! mengecek username pada database
         $data = $admin->where('username', $username)->first();
 
+        // ! Memanggil data profil
         $datax = $profil->find(1);
 
         $data['logo'] = $datax['gambar'];

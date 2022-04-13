@@ -97,6 +97,8 @@ $routes->post('m-admin/penduduk/update/(:any)', 'Admin::update_penduduk/$1');
 $routes->get('m-admin/penduduk/delete/(:any)', 'Admin::detele_penduduk/$1');
 $routes->get('m-admin/penduduk/detail/(:any)', 'Admin::detail_penduduk/$1');
 
+// * Route Keluarga
+$routes->get('m-admin/keluarga', 'Admin::keluarga');
 
 // ? Route untuk tampilan login
 // ? Route index login page

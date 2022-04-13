@@ -11,6 +11,7 @@ class M_detail_keluarga extends Model
     protected $allowedFields = [
         'id_keluarga',
         'id_penduduk',
+        'nama',
         'status_perkawinan',
         'status_hubungan_dalam_keluarga',
         'kewarganegaraan',

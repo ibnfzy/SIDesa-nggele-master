@@ -722,12 +722,159 @@ class Admin extends BaseController
     {
         $keluarga = new M_keluarga();
 
+        $penduduk = new M_penduduk();
+
+        $detailKeluarga = new M_detail_keluarga();
+
         $data = [
-            'title' => 'Table Kartu Keluarga'
+            'title' => 'Table Kartu Keluarga',
+            'js' => 'admin/js/datatables',
+            'parentdir' => 'Kependudukan',
+            'js2' => 'admin/js/form'
         ];
 
-        $data['keluarga'] = $keluarga->findAll();
+        $data['kepala_keluarga'] = $penduduk->where('no_kk', null);
+
+        $dataKeluarga = $keluarga->findAll();
+
+        $data['keluarga'] = [
+            'id_keluarga' => $dataKeluarga['id_keluarga'],
+            'no_kk' => $dataKeluarga['no_kk'],
+            'nama' => $detailKeluarga->where('id_keluarga', $dataKeluarga['id_keluarga']),
+            'alamat' => $dataKeluarga['alamat'],
+            'rt' => $dataKeluarga['rt'],
+            'rw' => $dataKeluarga['rw'],
+            'kecamatan' => $dataKeluarga['kecamatan']
+        ];
 
         return view('admin/keluarga', $data);
     }
+
+    public function add_keluarga(): string
+    {
+        $penduduk = new M_penduduk();
+
+        $idPenduduk = $this->request->getPost('kepala_keluarga');
+
+        $data = [
+            'title' => 'Tambah Keluarga',
+            'js' => 'admin/js/form'
+        ];
+
+        $dataPenduduk = $penduduk->find($idPenduduk);
+
+        $data['kepala_keluarga'] = [
+            'id_penduduk' => $dataPenduduk['id_penduduk'],
+            'nik' => $dataPenduduk['NIK'],
+            'nama' => $dataPenduduk['nama'],
+            'alamat' => $dataPenduduk['alamat'],
+            'kewarganegaraan' => $dataPenduduk['kewarganegaraan']
+        ];
+
+        return view('admin/add-keluarga', $data);
+    }
+
+    public function store_keluarga(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $keluarga = new M_keluarga();
+
+        $detail = new M_detail_keluarga();
+
+        $penduduk = new M_penduduk();
+
+        $dataKeluarga = [
+            'no_kk' => $this->request->getPost('no_kk'),
+            'alamat' => $this->request->getPost('alamat'),
+            'rt' => $this->request->getPost('rt'),
+            'rw' => $this->request->getPost('rw'),
+            'desa_kelurahan' => $this->request->getPost('desa'),
+            'kecamatan' => $this->request->getPost('kecamatan'),
+            'kabupaten_kota' => $this->request->getPost('kabupaten'),
+            'provinsi' => 'Maluku Utara',
+            'tanggal_dikeluarkan' => $this->request->getPost('tgl_keluar')
+        ];
+
+        $keluarga->save($dataKeluarga);
+
+        $data = $keluarga->where('no_kk', $this->request->getPost('no_kk'));
+
+        if ($this->request->getPost('kewarganegaraan') == 'WNA') {
+            $dataDetailKeluarga = [
+                'id_keluarga' => $data['id_keluarga'],
+                'id_penduduk' => $this->request->getPost('id_penduduk'),
+                'nama' => $this->request->getPost('nama'),
+                'status_perkawinan' => $this->request->getPost('status'),
+                'status_hubungan_dalam_keluarga' => $this->request->getPost('status_hubungan'),
+                'kewarganegaraan' => $this->request->getPost('kewarganegaraan'),
+                'dokumen_imigrasi' => $this->request->getPost('dokumen_imigrasi'),
+                'nama_bapak' => $this->request->getPost('nama_bapak'),
+                'nama_ibu' => $this->request->getPost('nama_ibu')
+            ];
+
+            $detail->save($dataDetailKeluarga);
+        } else {
+            $dataDetailKeluarga = [
+                'id_keluarga' => $data['id_keluarga'],
+                'id_penduduk' => $this->request->getPost('id_penduduk'),
+                'nama' => $this->request->getPost('nama'),
+                'status_perkawinan' => $this->request->getPost('status'),
+                'status_hubungan_dalam_keluarga' => $this->request->getPost('status_hubungan'),
+                'kewarganegaraan' => $this->request->getPost('kewarganegaraan'),
+                'nama_bapak' => $this->request->getPost('nama_bapak'),
+                'nama_ibu' => $this->request->getPost('nama_ibu')
+            ];
+
+            $detail->save($dataDetailKeluarga);
+        }
+
+        $dataPenduduk = [
+            'no_kk' => $this->request->getPost('no_kk')
+        ];
+
+        $idPenduduk = $this->request->getPost('id_penduduk');
+
+        $penduduk->update($idPenduduk, $dataPenduduk);
+
+        return redirect()->to(base_url('m-admin/keluarga'))->with('type-status', 'success')
+            ->with('message', 'Keluarga telah ditembahkan');
+    }
+
+    public function update_keluarga($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $keluarga = new M_keluarga();
+
+        $data = [
+            'no_kk' => $this->request->getPost('no_kk'),
+            'alamat' => $this->request->getPost('alamat'),
+            'rt' => $this->request->getPost('rt'),
+            'rw' => $this->request->getPost('rw'),
+            'tanggal_dikeluarkan' => $this->request->getPost('tgl_keluar')
+        ];
+
+        $keluarga->update($id, $data);
+
+        return redirect()->to(base_url('m-admin/keluarga'))->with('type-status', 'success')
+            ->with('message', 'Keluarga telah diedit');
+    }
+
+    public function delete_keluarga($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $keluarga = new M_keluarga();
+
+        $detailKeluarga = new M_detail_keluarga();
+
+        $keluarga->delete($id);
+
+        $data = $detailKeluarga->where('id_keluarga', $id);
+
+        $detailKeluarga->delete($data['id_detail_keluarga']);
+
+        return redirect()->to(base_url('m-admin/keluarga'))->with('type-status', 'success')
+            ->with('message', 'Keluarga telah dihapus');
+    }
+
+    // detail keluarga
+    // add_anggota_keluarga
+    // store_anggota_keluarga
+    // delete_anggota_keluarga
 }

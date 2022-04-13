@@ -111,7 +111,8 @@
     </script>
 
     <!-- Memanggil Script JS tambahan untuk DataTables -->
-    <?= $retVal = (isset($js)) ? $this->include($js) : ''; ?>
+    <?= $js1 = (isset($js)) ? $this->include($js) : ''; ?>
+    <?= $js2 = (isset($js2)) ? $this->include($js2) : ''; ?>
 </body>
 
 </html>
