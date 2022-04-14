@@ -17,6 +17,7 @@ class M_keluarga extends Model
         'kecamatan',
         'kabupaten_kota',
         'provinsi',
+        'dusun',
         'tanggal_dikeluarkan'
     ];
 }

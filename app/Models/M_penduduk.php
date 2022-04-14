@@ -22,6 +22,7 @@ class M_penduduk extends Model
         'status_pernikahan',
         'pekerjaan',
         'kewarganegaraan',
-        'no_kk'
+        'no_kk',
+        'dusun'
     ];
 }
