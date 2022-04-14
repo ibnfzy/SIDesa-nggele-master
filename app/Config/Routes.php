@@ -97,8 +97,15 @@ $routes->post('m-admin/penduduk/update/(:any)', 'Admin::update_penduduk/$1');
 $routes->get('m-admin/penduduk/delete/(:any)', 'Admin::detele_penduduk/$1');
 $routes->get('m-admin/penduduk/detail/(:any)', 'Admin::detail_penduduk/$1');
 
-// * Route Keluarga
-$routes->get('m-admin/keluarga', 'Admin::keluarga');
+// * Route Pelayanan Surat
+$routes->get('m-admin/pelayanan-surat', 'Admin::pelayanan_surat');
+$routes->post('m-admin/pelayanan-surat/store', 'Admin::store_surat');
+$routes->post('m-admin/pelayanan-surat/update/(:any)', 'Admin::update_surat/$1');
+$routes->get('m-admin/pelayanan-surat/delete/(:any)', 'Admin::delete_surat/$1');
+$routes->get('m-admin/pelayanan-surat/create/(:any)', 'Admin::create_surat/$1');
+
+// ! Route PRINT SURAT .PDF
+$routes->get('m-admin/print/surat-ket-tidak-mampu/(:any)', 'PrintPdf::surat_ket_tidak_mampu/$1');
 
 // ? Route untuk tampilan login
 // ? Route index login page

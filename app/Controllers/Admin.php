@@ -14,6 +14,7 @@ use App\Models\M_detail_keluarga;
 use App\Models\M_keluarga;
 use App\Models\M_penduduk;
 use App\Models\M_dusun;
+use App\Models\M_surat;
 
 class Admin extends BaseController
 {
@@ -717,5 +718,87 @@ class Admin extends BaseController
 
         return redirect()->to(base_url('m-admin/penduduk'))->with('type-status', 'success')
             ->with('message', `Penduduk dengan ID $id telah dihapus`);
+    }
+
+    public function pelayanan_surat(): string
+    {
+        $surat = new M_surat();
+
+        $data = [
+            'title' => 'Table Surat',
+            'parentdir' => 'Pelayanan',
+            'js' => 'admin/js/datatables'
+        ];
+
+        $data['surat'] = $surat->findAll();
+
+        return view('admin/pelayanan-surat', $data);
+    }
+
+    public function store_surat(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $surat = new M_surat();
+
+        $data = [
+            'kode_surat' => $this->request->getPost('kode_surat'),
+            'nama_surat' => $this->request->getPost('nama_surat'),
+            'url_surat' => $this->request->getPost('url')
+        ];
+
+        $surat->save($data);
+
+        return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'success')
+            ->with('message', 'Surat telah ditembahkan');
+    }
+
+    public function update_surat($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $surat = new M_surat();
+
+        $data = [
+            'kode_surat' => $this->request->getPost('kode_surat'),
+            'nama_surat' => $this->request->getPost('nama_surat'),
+            'url_surat' => $this->request->getPost('url')
+        ];
+
+        $surat->update($id, $data);
+
+        return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'success')
+            ->with('message', 'Surat telah diupdate');
+    }
+
+    public function delete_surat($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $surat = new M_surat();
+
+        $surat->delete($id);
+
+        return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'success')
+            ->with('message', 'Surat telah dihapus');
+    }
+
+    public function create_surat($id): string
+    {
+        $surat = new M_surat();
+
+        $data['penduduk'] = [
+            'NIK' => $this->request->getPost('nik'),
+            'nama' => $this->request->getPost('nama'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'goldar' => $this->request->getPost('goldar'),
+            'alamat' => $this->request->getPost('alamat'),
+            'rt' => $this->request->getPost('rt'),
+            'rw' => $this->request->getPost('rw'),
+            'agama' => $this->request->getPost('agama'),
+            'status_pernikahan' => $this->request->getPost('status_pernikahan'),
+            'pekerjaan' => $this->request->getPost('pekerjaan'),
+            'kewarganegaraan' => $this->request->getPost('kewarganegaraan')
+        ];
+
+        $data['surat'] = $surat->find($id);
+
+        return view('admin/print', $data);
     }
 }

@@ -17,12 +17,16 @@
                 <a href="#" class="d-block"><?= $_SESSION['fullname'] ?></a>
             </div>
         </div>
-
+        <?php if (isset($parentdir)) {
+            $dir = $parentdir;
+        } else {
+            $dir = '';
+        } ?>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $active = ($parentdir == 'Kependudukan') ? 'active' : '' ?>">
+                    <a href="#" class="nav-link <?= $active = ($dir == 'Kependudukan') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>
                             Kependudukan
@@ -41,7 +45,7 @@
                 </li>
                 <!-- Profile Desa -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $active = ($parentdir == 'Profil Desa') ? 'active' : '' ?>">
+                    <a href="#" class="nav-link <?= $active = ($dir == 'Profil Desa') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-info"></i>
                         <p>
                             Profile Desa
@@ -81,7 +85,7 @@
                 </li>
                 <!-- Pemerintahan Desa -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $active = ($parentdir == 'Pemerintah Desa') ? 'active' : '' ?>">
+                    <a href="#" class="nav-link <?= $active = ($dir == 'Pemerintah Desa') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-building"></i>
                         <p>
                             Pemerintahan Desa
@@ -109,7 +113,7 @@
                 </li>
                 <!-- Pelayanan -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?= $active = ($dir == 'Pelayanan') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-comment"></i>
                         <p>
                             Pelayanan
@@ -118,15 +122,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('m-admin/pelayanan-surat') ?>"
+                                class="nav-link <?= $active = ($title == 'Table Surat') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Pelayanan Administrasi Persuratan</p>
+                                <p>Surat - surat</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link <?= $active = ($title == 'Pelayanan Surat') ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pelayanan Persuratan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link <?= $active = ($title == 'Pelayanan Aspirasi') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pelayanan Aspirasi</p>
                             </a>
