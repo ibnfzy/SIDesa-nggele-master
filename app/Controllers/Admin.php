@@ -10,11 +10,11 @@ use App\Models\M_keunggulan;
 use App\Models\M_berita;
 use App\Models\M_peta;
 use App\Models\M_pemerintah;
-use App\Models\M_detail_keluarga;
-use App\Models\M_keluarga;
 use App\Models\M_penduduk;
-use App\Models\M_dusun;
 use App\Models\M_surat;
+use App\Models\M_aspirasi;
+use App\Models\M_slider;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Admin extends BaseController
 {
@@ -800,5 +800,168 @@ class Admin extends BaseController
         $data['surat'] = $surat->find($id);
 
         return view('admin/print', $data);
+    }
+
+    public function aspirasi(): string
+    {
+        $aspirasi = new M_aspirasi();
+
+        $data = [
+            'title' => 'Table Pelayanan Aspirasi',
+            'parentdir' => 'Pelayanan',
+            'js' => 'admin/js/datatables'
+        ];
+
+        $data['aspirasi'] = $aspirasi->findAll();
+
+        return view('admin/aspirasi', $data);
+    }
+
+    public function detail_aspirasi($id): string
+    {
+        $aspirasi = new M_aspirasi();
+
+        $data = [
+            'title' => 'Detail Aspirasi',
+            'parentdir' => 'Pelayanan'
+        ];
+
+        $data['pelayanan'] = $aspirasi->find($id);
+
+        return view('admin/detail-aspirasi', $data);
+    }
+
+    public function delete_aspirasi($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $aspirasi = new M_aspirasi();
+
+        $aspirasi->delete($id);
+
+        return redirect()->to(base_url('m-admin/aspirasi'))->with('type-status', 'success')
+            ->with('message', 'Aspirasi telah dihapus');
+    }
+
+    public function slider(): string
+    {
+        $slider = new M_slider();
+
+        $data = [
+            'title' => 'Table Slider',
+            'js' => 'admin/js/datatables'
+        ];
+
+        $data['slider'] = $slider->findAll();
+
+        return view('admin/slider', $data);
+    }
+
+    public function add_slider(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $slider = new M_slider();
+
+        $count = count($slider->findAll());
+
+        if ($count == 5) {
+            return redirect()->to(base_url('m-admin/slider'))->with('type-status', 'error')
+                ->with('message', 'Table Slider telah penuh, silahkan menghapus untuk menambah data baru');
+        } else {
+            $data = [
+                'title' => 'Add Slider',
+                'js' => 'admin/js/form'
+            ];
+
+            return view('admin/add-slider', $data);
+        }
+    }
+
+    public function store_slider(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $slider = new M_slider();
+
+        $img = (null !== $this->request->getFile('gambar')) ? $this->request->getFile('gambar') : null;
+
+        if ($img->isValid()) {
+            $data = [
+                'gambar' => $img->getName(),
+                'link' => $this->request->getPost('link'),
+                'kategori' => $this->request->getPost('kategori'),
+                'tgl_upload' => date('Y-m-d')
+            ];
+
+            if ($img->isValid() && !$img->hasMoved()) {
+                $img->move(ROOTPATH . 'public/admin/uploads');
+            }
+
+            $slider->save($data);
+
+            return redirect()->to(base_url('m-admin/slider'))->with('type-status', 'success')
+                ->with('message', 'Slider baru telah ditembahkan');
+        } else {
+            return redirect()->to(base_url('m-admin/slider/add'))->with('type-status', 'error')
+                ->with('message', 'Gambar wajib diupload untuk slider');
+        }
+    }
+
+    public function edit_slider($id): string
+    {
+        $slider = new M_slider();
+
+        $data = [
+            'title' => 'Edit Slider',
+            'js' => 'admin/js/form'
+        ];
+
+        $data['slider'] = $slider->find($id);
+
+        return view('admin/edit-slider', $data);
+    }
+
+    public function update_slider($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $slider = new M_slider();
+
+        $img = (null !== $this->request->getFile('gambar')) ? $this->request->getFile('gambar') : null;
+
+        if (!$img->isValid()) {
+            $data = [
+                'link' => $this->request->getPost('link'),
+                'kategori' => $this->request->getPost('kategori'),
+                'tgl_upload' => date('Y-m-d')
+            ];
+
+            $slider->update($id, $data);
+
+            return redirect()->to(base_url('m-admin/slider'))->with('type-status', 'success')
+                ->with('message', 'Slider telah diubah');
+        } else if ($img->isValid()) {
+            $data = [
+                'gambar' => $img->getName(),
+                'link' => $this->request->getPost('link'),
+                'kategori' => $this->request->getPost('kategori'),
+                'tgl_upload' => date('Y-m-d')
+            ];
+
+            if ($img->isValid() && !$img->hasMoved()) {
+                $img->move(base_url('admin/uploads/'));
+            }
+
+            $slider->update($id, $data);
+
+            return redirect()->to(base_url('m-admin/slider'))->with('type-status', 'success')
+                ->with('message', 'Slider telah diubah');
+        } else {
+            return redirect()->to(base_url('m-admin/slider/edit/' . $id))->with('type-status', 'error')
+                ->with('message', 'Form tidak boleh kosong');
+        }
+    }
+
+    public function delete_slider($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $slider = new M_slider();
+
+        $slider->delete($id);
+
+        return redirect()->to(base_url('m-admin/slider'))->with('type-status', 'success')
+            ->with('message', 'Slider telah dihapus');
     }
 }

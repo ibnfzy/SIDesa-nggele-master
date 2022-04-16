@@ -97,6 +97,11 @@ $routes->post('m-admin/penduduk/update/(:any)', 'Admin::update_penduduk/$1');
 $routes->get('m-admin/penduduk/delete/(:any)', 'Admin::detele_penduduk/$1');
 $routes->get('m-admin/penduduk/detail/(:any)', 'Admin::detail_penduduk/$1');
 
+// * Route Pelayanan Aspirasi
+$routes->get('m-admin/aspirasi', 'Admin::aspirasi');
+$routes->get('m-admin/aspirasi/detail/(:any)', 'Admin::detail_aspirasi/$1');
+$routes->get('m-admin/aspirasi/delete/(:any)', 'Admin::delete_aspirasi/$1');
+
 // * Route Pelayanan Surat
 $routes->get('m-admin/pelayanan-surat', 'Admin::pelayanan_surat');
 $routes->post('m-admin/pelayanan-surat/store', 'Admin::store_surat');

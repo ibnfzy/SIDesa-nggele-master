@@ -22,16 +22,6 @@
                             <li><a href="#">Pemerintahan Desa</a></li>
                         </ul>
                     </li>
-                    <li class="menu-parent">Data Desa
-                        <ul class="sub-menu">
-                            <li><a href="#">Data Wilayah Administratif</a></li>
-                            <li><a href="#">Data Pendidikan dalam KK</a></li>
-                            <li><a href="#">Data Pekerjaan</a></li>
-                            <li><a href="#">Data Agama</a></li>
-                            <li><a href="#">Data Jenis Kelamin</a></li>
-                            <li><a href="#">Data Warga Negara</a></li>
-                        </ul>
-                    </li>
                     <li class="menu-parent">Pelayanan
                         <ul class="sub-menu">
                             <li><a href="#">Pelayanan Administrasi Persuratan</a></li>
