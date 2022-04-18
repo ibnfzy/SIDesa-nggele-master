@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIDesa Nggele | <?= $title ?></title>
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="css/all.css">
-    <link rel="stylesheet" type="text/css" href="css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/lightbox.css">
-    <link rel="stylesheet" type="text/css" href="css/flexslider.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.rateyo.css" />
-    <link rel="stylesheet" type="text/css" href="inner-page-style.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="<?= base_url('favicon.ico') ?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/all.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/all.min.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/lightbox.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/flexslider.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/owl.carousel.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/owl.theme.default.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/jquery.rateyo.css') ?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url('inner-page-style.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('style.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
 </head>
 
@@ -32,14 +32,14 @@
         <?= $this->include('layout/footer') ?>
 
     </div>
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/lightbox.js"></script>
-    <script type="text/javascript" src="js/all.js"></script>
-    <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
-    <script type="text/javascript" src="js/owl.carousel.js"></script>
-    <script type="text/javascript" src="js/jquery.flexslider.js"></script>
-    <script type="text/javascript" src="js/jquery.rateyo.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="<?= base_url('js/jquery-3.3.1.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/lightbox.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/all.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/isotope.pkgd.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/owl.carousel.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/jquery.flexslider.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/jquery.rateyo.js') ?>"></script>
+    <script type="text/javascript" src="<?= base_url('js/custom.js') ?>"></script>
 </body>
 
 </html>

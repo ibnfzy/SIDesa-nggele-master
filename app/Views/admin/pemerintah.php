@@ -37,14 +37,14 @@
                         <div class="card-body p-0">
                             <div class="mailbox-read-info">
                                 <h6>
-                                    <span class="mailbox-read-time float-right"><?= $pemerintahi['tgl_upload'] ?></span>
+                                    <span class="mailbox-read-time float-right"><?= $pemerintah['tgl_upload'] ?></span>
                                 </h6>
                             </div>
                             <!-- /.mailbox-read-info -->
                             <!-- /.mailbox-controls -->
                             <div class="mailbox-read-message">
                                 <!-- isi sejarah -->
-                                <?= $pemerintah['isi_pemerintah'] ?>
+                                <?= $pemerintah['isi_pemerintah_desa'] ?>
                             </div>
                             <!-- /.mailbox-read-message -->
                         </div>
@@ -67,11 +67,11 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url('m-admin/pemerintah/simpan/' . $pemerintah['id_pemerintah']) ?>"
+                    <form action="<?= base_url('m-admin/pemerintah/simpan/' . $pemerintah['id_pemerintah_desa']) ?>"
                         method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <textarea name="editor" id="editor" cols="30"
-                                rows="10"><?= $pemerintah['isi_pemerintah'] ?></textarea>
+                                rows="10"><?= $pemerintah['isi_pemerintah_desa'] ?></textarea>
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Tutup</button>

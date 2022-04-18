@@ -14,6 +14,7 @@ class M_profil extends Model
         'kontak',
         'alamat_kantor',
         'gambar',
+        'email',
         'id_admin'
     ];
 }

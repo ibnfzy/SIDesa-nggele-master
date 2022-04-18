@@ -10,8 +10,6 @@ class M_slider extends Model
     protected $primaryKey = 'id_slider';
     protected $allowedFields = [
         'gambar',
-        'link',
-        'kategori',
         'tgl_upload'
     ];
 }

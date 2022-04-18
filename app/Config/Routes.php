@@ -35,6 +35,7 @@ $routes->setAutoRoute(false);
 // ? Route untuk tampilan depan
 // ? Route index home pada tampilan depan
 $routes->get('/', 'Home::index');
+$routes->get('/berita', 'Home::berita');
 
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard
@@ -101,6 +102,14 @@ $routes->get('m-admin/penduduk/detail/(:any)', 'Admin::detail_penduduk/$1');
 $routes->get('m-admin/aspirasi', 'Admin::aspirasi');
 $routes->get('m-admin/aspirasi/detail/(:any)', 'Admin::detail_aspirasi/$1');
 $routes->get('m-admin/aspirasi/delete/(:any)', 'Admin::delete_aspirasi/$1');
+
+// * Route Slider
+$routes->get('m-admin/slider', 'Admin::slider');
+$routes->get('m-admin/slider/add', 'Admin::add_slider');
+$routes->post('m-admin/slider/store', 'Admin::store_slider');
+$routes->get('m-admin/slider/edit/(:any)', 'Admin::edit_slider/$1');
+$routes->post('m-admin/slider/update/(:any)', 'Admin::update_slider/$1');
+$routes->get('m-admin/slider/delete/(:any)', 'Admin::delete_slider/$1');
 
 // * Route Pelayanan Surat
 $routes->get('m-admin/pelayanan-surat', 'Admin::pelayanan_surat');

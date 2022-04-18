@@ -7,7 +7,7 @@
         <div class="nav-wrap">
             <nav class="nav-desktop">
                 <ul class="menu-list">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="<?= base_url('/') ?>">Home</a></li>
                     <li class="menu-parent">Profile Desa
                         <ul class="sub-menu">
                             <li><a href="#">Profile Desa</a></li>
@@ -28,7 +28,7 @@
                             <li><a href="#">Pelayanan Aspirasi</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Berita</a></li>
+                    <li><a href="<?= base_url('berita') ?>">Berita</a></li>
                 </ul>
             </nav>
             <div id="bar">

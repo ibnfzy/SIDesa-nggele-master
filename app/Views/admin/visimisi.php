@@ -44,7 +44,7 @@
                             <!-- /.mailbox-controls -->
                             <div class="mailbox-read-message">
                                 <!-- isi sejarah -->
-                                <?= $visimisi['isi_visimisi'] ?>
+                                <?= $visimisi['isi_visi_misi'] ?>
                             </div>
                             <!-- /.mailbox-read-message -->
                         </div>
@@ -67,11 +67,11 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url('m-admin/visimisi/simpan/' . $visimisi['id_visimisi']) ?>" method="post"
+                    <form action="<?= base_url('m-admin/visimisi/simpan/' . $visimisi['id_visi_misi']) ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="modal-body">
                             <textarea name="editor" id="editor" cols="30"
-                                rows="10"><?= $visimisi['isi_visimisi'] ?></textarea>
+                                rows="10"><?= $visimisi['isi_visi_misi'] ?></textarea>
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Tutup</button>

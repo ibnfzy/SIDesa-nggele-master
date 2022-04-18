@@ -58,6 +58,12 @@
 
                             <hr>
 
+                            <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
+
+                            <p class="text-muted"><?= $profil['email'] ?></p>
+
+                            <hr>
+
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat Kantor Desa</strong>
 
                             <p class="text-muted"><?= $profil['alamat_kantor'] ?></p>
@@ -120,6 +126,13 @@
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="kontak" name="kontak"
                                                     placeholder="Kontak" value="<?= $profil['kontak'] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="Email" value="<?= $profil['email'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">

@@ -139,7 +139,7 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="<?= base_url('m-admin/aspirasi') ?>"
                                 class="nav-link <?= $active = ($title == 'Pelayanan Aspirasi') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pelayanan Aspirasi</p>
@@ -153,6 +153,15 @@
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Berita
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('m-admin/slider') ?>"
+                        class="nav-link <?= $active = ($title == 'Table Slider') ? 'active' : '' ?>">
+                        <i class="nav-icon far fa-images"></i>
+                        <p>
+                            Slide Show
                         </p>
                     </a>
                 </li>

@@ -67,15 +67,15 @@
                             <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                                 <li>
                                     <span class="mailbox-attachment-icon has-img"><img
-                                            src="<?= base_url('admin/uploads/' . $berita['thumbnail']) ?>"
+                                            src="<?= base_url('admin/uploads/' . $berita['thumbnail_berita']) ?>"
                                             alt="Attachment" width="100px"></span>
 
                                     <div class="mailbox-attachment-info row">
                                         <a href="#" class="mailbox-attachment-name"><i class="fas fa-camera"></i>
-                                            <?= $berita['thumbnail'] ?></a>
+                                            <?= $berita['thumbnail_berita'] ?></a>
                                         <span class="mailbox-attachment-size clearfix mt-1">
                                             <span></span>
-                                            <a href="<?= base_url('admin/uploads/' . $berita['thumbnail']) ?>"
+                                            <a href="<?= base_url('admin/uploads/' . $berita['thumbnail_berita']) ?>"
                                                 class="btn btn-default btn-sm float-right"><i
                                                     class="fas fa-cloud-download-alt"></i></a>
                                         </span>

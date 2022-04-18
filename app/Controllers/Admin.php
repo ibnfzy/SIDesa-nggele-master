@@ -14,7 +14,6 @@ use App\Models\M_penduduk;
 use App\Models\M_surat;
 use App\Models\M_aspirasi;
 use App\Models\M_slider;
-use CodeIgniter\HTTP\RedirectResponse;
 
 class Admin extends BaseController
 {
@@ -193,6 +192,7 @@ class Admin extends BaseController
             'tgl_upload' => date('Y-m-d'),
             'kontak' => $this->request->getPost('kontak'),
             'alamat_kantor' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
             'id_admin' => $_SESSION['id_admin']
         ];
 
@@ -259,6 +259,7 @@ class Admin extends BaseController
         $data = [
             'title' => 'Visi & Misi Desa',
             'parentdir' => 'Pemerintah Desa',
+            'js' => 'admin/js/summernote'
         ];
 
         $data['visimisi'] = $visimisi->find($id);
@@ -487,7 +488,7 @@ class Admin extends BaseController
 
         $data['berita'] = $berita->find($id);
 
-        return view('admin/berita/edit', $data);
+        return view('admin/edit-berita', $data);
     }
 
     public function update_berita($id): \CodeIgniter\HTTP\RedirectResponse
@@ -531,6 +532,19 @@ class Admin extends BaseController
             return redirect()->to(base_url('m-admin/berita/edit/' . $id))->with('type-status', 'error')
                 ->with('message', 'Form tidak boleh kosong');
         }
+    }
+
+    public function detail_berita($id): string
+    {
+        $berita = new M_berita();
+
+        $data = [
+            'title' => 'Detail Berita'
+        ];
+
+        $data['berita'] = $berita->find($id);
+
+        return view('admin/detail-berita', $data);
     }
 
     public function delete_berita($id): \CodeIgniter\HTTP\RedirectResponse
@@ -578,7 +592,8 @@ class Admin extends BaseController
 
         $data = [
             'title' => 'Pemerintah Desa',
-            'parentdir' => 'Pemerintah Desa'
+            'parentdir' => 'Pemerintah Desa',
+            'js' => 'admin/js/summernote'
         ];
 
         $data['pemerintah'] = $pemerintah->find($id);
@@ -840,7 +855,6 @@ class Admin extends BaseController
         return redirect()->to(base_url('m-admin/aspirasi'))->with('type-status', 'success')
             ->with('message', 'Aspirasi telah dihapus');
     }
-
     public function slider(): string
     {
         $slider = new M_slider();
@@ -850,28 +864,11 @@ class Admin extends BaseController
             'js' => 'admin/js/datatables'
         ];
 
+        $data['count'] = count($slider->findAll());
+
         $data['slider'] = $slider->findAll();
 
         return view('admin/slider', $data);
-    }
-
-    public function add_slider(): \CodeIgniter\HTTP\RedirectResponse
-    {
-        $slider = new M_slider();
-
-        $count = count($slider->findAll());
-
-        if ($count == 5) {
-            return redirect()->to(base_url('m-admin/slider'))->with('type-status', 'error')
-                ->with('message', 'Table Slider telah penuh, silahkan menghapus untuk menambah data baru');
-        } else {
-            $data = [
-                'title' => 'Add Slider',
-                'js' => 'admin/js/form'
-            ];
-
-            return view('admin/add-slider', $data);
-        }
     }
 
     public function store_slider(): \CodeIgniter\HTTP\RedirectResponse
@@ -883,8 +880,6 @@ class Admin extends BaseController
         if ($img->isValid()) {
             $data = [
                 'gambar' => $img->getName(),
-                'link' => $this->request->getPost('link'),
-                'kategori' => $this->request->getPost('kategori'),
                 'tgl_upload' => date('Y-m-d')
             ];
 
