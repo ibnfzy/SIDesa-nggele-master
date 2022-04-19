@@ -23,7 +23,8 @@ class Pager extends BaseConfig
 		'default_full'   => 'CodeIgniter\Pager\Views\default_full',
 		'default_simple' => 'CodeIgniter\Pager\Views\default_simple',
 		'default_head'   => 'CodeIgniter\Pager\Views\default_head',
-		'berita_page' => 'App\Views\Pagers\berita'
+		'berita_page' => 'App\Views\Pagers\berita',
+		'keunggulan_page' => 'App\Views\Pagers\Keunggulan'
 	];
 
 	/*

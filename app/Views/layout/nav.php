@@ -1,7 +1,7 @@
 <div class="main-header">
     <div class="container">
         <div class="logo-wrap" itemprop="logo">
-            <img src="images/site-logo.jpg" alt="Logo Image">
+            <img width="60" src="<?= base_url('admin/uploads/' . $_SESSION['logo']) ?>" alt="Logo Image">
             <!-- <h1>Education</h1> -->
         </div>
         <div class="nav-wrap">
@@ -10,21 +10,20 @@
                     <li><a href="<?= base_url('/') ?>">Home</a></li>
                     <li class="menu-parent">Profile Desa
                         <ul class="sub-menu">
-                            <li><a href="#">Profile Desa</a></li>
-                            <li><a href="#">Sejarah Desa</a></li>
-                            <li><a href="#">Peta Desa</a></li>
-                            <li><a href="#">Keunggulan Desa</a></li>
+                            <li><a href="<?= base_url('profil') ?>">Profile Desa</a></li>
+                            <li><a href="<?= base_url('sejarah') ?>">Sejarah Desa</a></li>
+                            <li><a href="<?= base_url('peta') ?>">Peta Desa</a></li>
+                            <li><a href="<?= base_url('keunggulan') ?>">Keunggulan Desa</a></li>
                         </ul>
                     </li>
                     <li class="menu-parent">Pemerintahan Desa
                         <ul class="sub-menu">
-                            <li><a href="#">Visi & Misi</a></li>
-                            <li><a href="#">Pemerintahan Desa</a></li>
+                            <li><a href="<?= base_url('visi-misi') ?>">Visi & Misi</a></li>
+                            <li><a href="<?= base_url('pemerintah') ?>">Pemerintahan Desa</a></li>
                         </ul>
                     </li>
                     <li class="menu-parent">Pelayanan
                         <ul class="sub-menu">
-                            <li><a href="#">Pelayanan Administrasi Persuratan</a></li>
                             <li><a href="#">Pelayanan Aspirasi</a></li>
                         </ul>
                     </li>

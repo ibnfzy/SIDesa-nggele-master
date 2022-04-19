@@ -39,6 +39,11 @@ $routes->get('/berita', 'Home::berita');
 $routes->get('/berita/(:any)', 'Home::detail_berita/$1');
 $routes->get('/keunggulan', 'Home::keunggulan');
 $routes->get('/keunggulan/(:any)', 'Home::detail_keunggulan/$1');
+$routes->get('/profil', 'Home::profil');
+$routes->get('/sejarah', 'Home::sejarah');
+$routes->get('/peta', 'Home::peta');
+$routes->get('/visi-misi', 'Home::visimisi');
+$routes->get('/pemerintah', 'Home::pemerintah');
 
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard

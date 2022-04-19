@@ -4,7 +4,7 @@
 <div class="page-content" itemscope itemtype=" http://schema.org/Blog">
     <div class="container">
         <article class="page-article" itemprop="blogPost">
-            <h1 itemprop="about"><?= $title ?></h1>
+            <h1 itemprop="about"><?= $jdl_berita ?></h1>
             <span><a href="#">Diposting pada tanggal <?= $tgl_upload ?></a></span>
             <img itemprop="image" src="<?= base_url('admin/uploads/' . $thumbnail_berita) ?>" alt="Image">
             <?= $isi_berita ?>
