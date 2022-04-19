@@ -1,21 +1,28 @@
 <?= $this->extend('base') ?>
 <?= $this->section('content') ?>
 
-<div class="page-content" itemscope itemtype=" http://schema.org/Blog">
+<div class="page-content">
     <div class="container">
-        <article class="page-article" itemprop="blogPost">
-            <h1 itemprop="about"><?= $title ?></h1>
-            <span><a href="#">Diposting pada tanggal <?= $tgl_upload ?></a></span>
-            <img itemprop="image" src="<?= base_url('admin/uploads/' . $thumbnail_berita) ?>" alt="Image">
-            <?= $isi_berita ?>
-            <div class="share-section">
-                <span>Share Via<a href="https://www.facebook.com/sharer.php?u=<?= base_url('berita/' . $id) ?>"><i
-                            class="fab fa-facebook-f"></i><a
-                            href="https://twitter.com/intent/tweet?url=<?= base_url('berita/' . $id) ?>"><i
-                                class="fab fa-twitter"></i></a></span>
-            </div>
-        </article>
+        <div class="grid-container" itemscope itemtype=" http://schema.org/Event">
+            <?php foreach ($keunggulan as $item) : ?>
+            <div class="grid-box-wrap">
+                <div class="grid-img" itemprop="image">
+                    <img width="370" style="min-height: 244px; max-height: 244px;"
+                        src="<?= base_url('admin/uploads/' . $item['gambar']) ?>" alt="travel images">
+                </div>
+                <div class="grid-body">
+                    <h4 itemprop="date"><?= $item['tgl_upload'] ?></h4>
+                    <hr>
+                    <h1 itemprop="name"><?= $item['judul_keunggulan'] ?></h1>
+                    <br>
+                    <p itemprop="description"></p>
 
+                    <a href="<?= base_url('keunggulan/' . $item['id_keunggulan']) ?>">Lihat lebih lanjut <i
+                            class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+            </div>
+            <?php endforeach ?>
+        </div>
         <aside>
             <!-- New Letter Ends -->
             <div class="recent-post">
@@ -39,6 +46,8 @@
                 </div>
             </div>
         </aside>
+        <!-- Pagination -->
+        <?= $pager->links('keunggulan_desa', 'berita_page') ?>
     </div>
 </div>
 

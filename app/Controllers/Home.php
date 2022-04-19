@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\M_berita;
+use App\Models\M_keunggulan;
 use App\Models\M_slider;
 
 class Home extends BaseController
@@ -11,6 +12,7 @@ class Home extends BaseController
 	protected $berita;
 	protected $db;
 	protected $beritaM;
+	protected $keunggulanM;
 	protected $baru;
 
 	public function __construct()
@@ -18,6 +20,7 @@ class Home extends BaseController
 		$this->db = \Config\Database::connect();
 		$this->slider = new M_slider();
 		$this->beritaM = new M_berita();
+		$this->keunggulanM = new M_keunggulan();
 		$this->berita = $this->db->table('berita');
 		$this->baru = $this->berita->orderBy('id_berita', 'DESC')->limit(4)->get()->getResultArray();
 	}
@@ -51,7 +54,7 @@ class Home extends BaseController
 		$get = $this->beritaM->where('id_berita', $id)->first();
 
 		$data = [
-			'title' => $get['title'],
+			'title' => $get['jdl_berita'],
 			'isi_berita' => $get['isi_berita'],
 			'thumbnail_berita' => $get['thumbnail_berita'],
 			'tgl_upload' => $get['tgl_upload'],
@@ -62,6 +65,31 @@ class Home extends BaseController
 		return view('detail-berita', $data);
 	}
 
-	//--------------------------------------------------------------------
+	public function keunggulan(): string
+	{
+		$data = [
+			'title' => 'Keunggulan Desa',
+			'keunggulan' => $this->keunggulanM->paginate(4, 'keunggulan'),
+			'baru' => $this->baru,
+			'pager' => $this->keunggulanM->pager
+		];
 
+		return view('keunggulan', $data);
+	}
+
+	public function detail_keunggulan($id): string
+	{
+		$get = $this->keunggulanM->where('id_keunggulan', $id)->first();
+
+		$data = [
+			'title' => $get['judul_keunggulan'],
+			'isi' => $get['isi_keunggulan'],
+			'gambar' => $get['gambar'],
+			'tgl_upload' => $get['tgl_upload'],
+			'baru' => $this->baru,
+			'id' => $id
+		];
+
+		return view('detail-keunggulan', $data);
+	}
 }

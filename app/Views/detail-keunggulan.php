@@ -6,12 +6,12 @@
         <article class="page-article" itemprop="blogPost">
             <h1 itemprop="about"><?= $title ?></h1>
             <span><a href="#">Diposting pada tanggal <?= $tgl_upload ?></a></span>
-            <img itemprop="image" src="<?= base_url('admin/uploads/' . $thumbnail_berita) ?>" alt="Image">
-            <?= $isi_berita ?>
+            <img itemprop="image" src="<?= base_url('admin/uploads/' . $gambar) ?>" alt="Image">
+            <?= $isi ?>
             <div class="share-section">
-                <span>Share Via<a href="https://www.facebook.com/sharer.php?u=<?= base_url('berita/' . $id) ?>"><i
+                <span>Share Via<a href="https://www.facebook.com/sharer.php?u=<?= base_url('keunggulan/' . $id) ?>"><i
                             class="fab fa-facebook-f"></i><a
-                            href="https://twitter.com/intent/tweet?url=<?= base_url('berita/' . $id) ?>"><i
+                            href="https://twitter.com/intent/tweet?url=<?= base_url('keunggulan/' . $id) ?>"><i
                                 class="fab fa-twitter"></i></a></span>
             </div>
         </article>

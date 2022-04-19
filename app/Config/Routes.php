@@ -37,6 +37,8 @@ $routes->setAutoRoute(false);
 $routes->get('/', 'Home::index');
 $routes->get('/berita', 'Home::berita');
 $routes->get('/berita/(:any)', 'Home::detail_berita/$1');
+$routes->get('/keunggulan', 'Home::keunggulan');
+$routes->get('/keunggulan/(:any)', 'Home::detail_keunggulan/$1');
 
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard
