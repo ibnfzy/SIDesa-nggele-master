@@ -11,6 +11,7 @@ class Home extends BaseController
 	protected $berita;
 	protected $db;
 	protected $beritaM;
+	protected $baru;
 
 	public function __construct()
 	{
@@ -18,6 +19,7 @@ class Home extends BaseController
 		$this->slider = new M_slider();
 		$this->beritaM = new M_berita();
 		$this->berita = $this->db->table('berita');
+		$this->baru = $this->berita->orderBy('id_berita', 'DESC')->limit(4)->get()->getResultArray();
 	}
 
 	public function index(): string
@@ -27,7 +29,7 @@ class Home extends BaseController
 		];
 
 		$data['slider'] = $this->slider->findAll();
-		$data['berita'] = $this->berita->orderBy('id_berita', 'DESC')->limit(3)->get()->getResultArray();
+		$data['berita'] = $this->baru;
 
 		return view('home', $data);
 	}
@@ -37,11 +39,27 @@ class Home extends BaseController
 		$data = [
 			'title' => 'Berita Desa',
 			'berita' => $this->beritaM->paginate(4, 'berita'),
-			'baru' => $this->berita->orderBy('id_berita', 'DESC')->limit(3)->get()->getResultArray(),
+			'baru' => $this->baru,
 			'pager' => $this->beritaM->pager
 		];
 
 		return view('berita', $data);
+	}
+
+	public function detail_berita($id): string
+	{
+		$get = $this->beritaM->where('id_berita', $id)->first();
+
+		$data = [
+			'title' => $get['title'],
+			'isi_berita' => $get['isi_berita'],
+			'thumbnail_berita' => $get['thumbnail_berita'],
+			'tgl_upload' => $get['tgl_upload'],
+			'baru' => $this->baru,
+			'id' => $id
+		];
+
+		return view('detail-berita', $data);
 	}
 
 	//--------------------------------------------------------------------

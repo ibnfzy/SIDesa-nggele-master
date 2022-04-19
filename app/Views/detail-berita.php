@@ -1,28 +1,21 @@
 <?= $this->extend('base') ?>
 <?= $this->section('content') ?>
 
-<div class="page-content">
+<div class="page-content" itemscope itemtype=" http://schema.org/Blog">
     <div class="container">
-        <div class="grid-container" itemscope itemtype=" http://schema.org/Event">
-            <?php foreach ($berita as $item) : ?>
-            <div class="grid-box-wrap">
-                <div class="grid-img" itemprop="image">
-                    <img width="370" style="min-height: 244px; max-height: 244px;"
-                        src="<?= base_url('admin/uploads/' . $item['thumbnail_berita']) ?>" alt="travel images">
-                </div>
-                <div class="grid-body">
-                    <h4 itemprop="date"><?= $item['tgl_upload'] ?></h4>
-                    <hr>
-                    <h1 itemprop="name"><?= $item['jdl_berita'] ?></h1>
-                    <br>
-                    <p itemprop="description"></p>
-
-                    <a href="<?= base_url('berita/' . $item['id_berita']) ?>">Baca Berita <i
-                            class="fas fa-long-arrow-alt-right"></i></a>
-                </div>
+        <article class="page-article" itemprop="blogPost">
+            <h1 itemprop="about"><?= $jdl_berita ?></h1>
+            <span><a href="#">Diposting pada tanggal <?= $tgl_upload ?></a></span>
+            <img itemprop="image" src="<?= base_url('admin/uploads/' . $thumbnail_berita) ?>" alt="Image">
+            <?= $isi_berita ?>
+            <div class="share-section">
+                <span>Share Via<a href="https://www.facebook.com/sharer.php?u=<?= base_url('berita/' . $id) ?>"><i
+                            class="fab fa-facebook-f"></i><a
+                            href="https://twitter.com/intent/tweet?url=<?= base_url('berita/' . $id) ?>"><i
+                                class="fab fa-twitter"></i></a></span>
             </div>
-            <?php endforeach ?>
-        </div>
+        </article>
+
         <aside>
             <!-- New Letter Ends -->
             <div class="recent-post">
@@ -46,8 +39,6 @@
                 </div>
             </div>
         </aside>
-        <!-- Pagination -->
-        <?= $pager->links('berita', 'berita_page') ?>
     </div>
 </div>
 
