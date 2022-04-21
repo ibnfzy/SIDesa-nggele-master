@@ -1,0 +1,8 @@
+[File ini berfungsi untuk menjelaskan folder document]
+
+Untuk menambahan file template surat baru, buatlah file 
+document (*.rtf) lalu simpan di dalam folder document
+
+berikut merupakan kode yang berfungsi untuk memanipulasi document
+
+//Table Penduduk

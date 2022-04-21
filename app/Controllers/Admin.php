@@ -13,6 +13,7 @@ use App\Models\M_pemerintah;
 use App\Models\M_penduduk;
 use App\Models\M_surat;
 use App\Models\M_aspirasi;
+use App\Models\M_log_surat;
 use App\Models\M_slider;
 
 class Admin extends BaseController
@@ -738,6 +739,7 @@ class Admin extends BaseController
     public function pelayanan_surat(): string
     {
         $surat = new M_surat();
+        $penduduk = new M_penduduk();
 
         $data = [
             'title' => 'Table Surat',
@@ -754,32 +756,27 @@ class Admin extends BaseController
     {
         $surat = new M_surat();
 
-        $data = [
-            'kode_surat' => $this->request->getPost('kode_surat'),
-            'nama_surat' => $this->request->getPost('nama_surat'),
-            'url_surat' => $this->request->getPost('url')
-        ];
+        $file = $this->request->getFile('file');
 
-        $surat->save($data);
+        if ($file->isValid()) {
+            $data = [
+                'kode_surat' => $this->request->getPost('kode_surat'),
+                'nama_surat' => $this->request->getPost('nama_surat'),
+                'file_temp_surat' => $file->getName()
+            ];
 
-        return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'success')
-            ->with('message', 'Surat telah ditembahkan');
-    }
+            if (!$file->hasMoved()) {
+                $file->move(ROOTPATH . 'public/document');
+            }
 
-    public function update_surat($id): \CodeIgniter\HTTP\RedirectResponse
-    {
-        $surat = new M_surat();
+            $surat->save($data);
 
-        $data = [
-            'kode_surat' => $this->request->getPost('kode_surat'),
-            'nama_surat' => $this->request->getPost('nama_surat'),
-            'url_surat' => $this->request->getPost('url')
-        ];
-
-        $surat->update($id, $data);
-
-        return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'success')
-            ->with('message', 'Surat telah diupdate');
+            return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'success')
+                ->with('message', 'Surat telah ditembahkan');
+        } else {
+            return redirect()->to(base_url('m-admin/pelayanan-surat'))->with('type-status', 'error')
+                ->with('message', 'Surat gagal ditembahkan');
+        }
     }
 
     public function delete_surat($id): \CodeIgniter\HTTP\RedirectResponse
@@ -796,25 +793,94 @@ class Admin extends BaseController
     {
         $surat = new M_surat();
 
-        $data['penduduk'] = [
-            'NIK' => $this->request->getPost('nik'),
-            'nama' => $this->request->getPost('nama'),
-            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
-            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-            'goldar' => $this->request->getPost('goldar'),
-            'alamat' => $this->request->getPost('alamat'),
-            'rt' => $this->request->getPost('rt'),
-            'rw' => $this->request->getPost('rw'),
-            'agama' => $this->request->getPost('agama'),
-            'status_pernikahan' => $this->request->getPost('status_pernikahan'),
-            'pekerjaan' => $this->request->getPost('pekerjaan'),
-            'kewarganegaraan' => $this->request->getPost('kewarganegaraan')
+        $penduduk = new M_penduduk();
+
+        $data = [
+            'title' => 'Buat Surat',
+            'js' => 'admin/js/form',
+            'penduduk' => $penduduk->findAll()
         ];
 
         $data['surat'] = $surat->find($id);
 
-        return view('admin/print', $data);
+        return view('admin/create-surat', $data);
+    }
+
+    public function log_surat($id_surat): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $this->db = \Config\Database::connect();
+        $log = $this->db->table('log_surat');
+        $logM = new M_log_surat();
+
+        $count = count($log->where('id_surat', $id_surat)->get()->getResultArray());
+
+        $data = [
+            'id_surat' => $id_surat,
+            'no_surat' => $count + 1,
+            'nik_penduduk' => $this->request->getPost('penduduk')
+        ];
+
+        $logM->save($data);
+
+        return redirect()->to(base_url('m-admin/arsip-surat'))->with('type-status', 'success')
+            ->with('message', 'Surat telah ditembahkan');
+    }
+
+    public function arsip_surat(): string
+    {
+        $log = new M_log_surat();
+
+        $data = [
+            'title' => 'Arsip Surat',
+            'log' => $log->findAll()
+        ];
+
+        return view('admin/arsip-surat', $data);
+    }
+
+    public function delete_log_surat($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $log = new M_log_surat();
+
+        $log->delete($id);
+
+        return redirect()->to(base_url('m-admin/arsip-surat'))->with('type-status', 'success')
+            ->with('message', 'Arsip Surat telah dihapus');
+    }
+
+    public function download_surat($id)
+    {
+        $log = new M_log_surat();
+        $surat = new M_surat();
+        $penduduk = new M_penduduk();
+
+        $get = $log->find($id);
+        $getSurat = $surat->find($get['id_surat']);
+        $getPenduduk = $penduduk->where('NIK', $get['nik_penduduk'])->first();
+
+        $data = [
+            'status_pengambilan' => 'Sudah Diambil'
+        ];
+
+        $log->update($id, $data);
+
+        $document = file_get_contents(ROOTPATH . 'public/document/' . $getSurat['file_temp_surat']);
+        $document = str_replace("[no_surat]", $get['no_surat'], $document);
+        $document = str_replace("[kode_surat]", $getSurat['kode_surat'], $document);
+        $document = str_replace("[nama]", $getPenduduk['nama'], $document);
+        $document = str_replace("[tempat_lahir]", $getPenduduk['tempat_lahir'], $document);
+        $document = str_replace("[tanggal_lahir]", $getPenduduk['tanggal_lahir'], $document);
+        $document = str_replace("[nik]", $get['nik_penduduk'], $document);
+        $document = str_replace("[jenis_kelamin]", $getPenduduk['jenis_kelamin'], $document);
+        $document = str_replace("[agama]", $getPenduduk['agama'], $document);
+        $document = str_replace("[pekerjaan]", $getPenduduk['pekerjaan'], $document);
+        $document = str_replace("[alamat]", $getPenduduk['alamat'], $document);
+
+        $this->response->setHeader("Content-type", "application/msword");
+        $this->response->setHeader("Content-disposition", "inline;filename=SKTM.doc");
+        $this->response->setHeader("Content-length", strlen($document));
+
+        return $document;
     }
 
     public function aspirasi(): string
@@ -823,7 +889,6 @@ class Admin extends BaseController
 
         $data = [
             'title' => 'Table Pelayanan Aspirasi',
-            'parentdir' => 'Pelayanan',
             'js' => 'admin/js/datatables'
         ];
 
@@ -837,8 +902,7 @@ class Admin extends BaseController
         $aspirasi = new M_aspirasi();
 
         $data = [
-            'title' => 'Detail Aspirasi',
-            'parentdir' => 'Pelayanan'
+            'title' => 'Detail Aspirasi'
         ];
 
         $data['pelayanan'] = $aspirasi->find($id);

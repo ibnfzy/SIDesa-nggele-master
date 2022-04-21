@@ -11,6 +11,6 @@ class M_surat extends Model
     protected $allowedFields = [
         'kode_surat',
         'nama_surat',
-        'url_surat'
+        'file_temp_surat'
     ];
 }

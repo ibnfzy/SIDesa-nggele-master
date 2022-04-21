@@ -38,7 +38,7 @@
                                         <th>Action</th>
                                         <th>Kode Surat</th>
                                         <th>Nama Surat</th>
-                                        <th>URL</th>
+                                        <th>Nama File Template</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,15 +49,16 @@
                                         <td>
                                             <div class="btn-group d-flex justify-content-center"><a
                                                     href="<?= base_url('m-admin/pelayanan-surat/create/' . $row['id_surat']) ?>"
-                                                    class="btn btn-flat btn-outline-warning">Buat Surat</a><a href="#"
-                                                    class="btn btn-flat btn-outline-info">Edit</a><a
+                                                    class="btn btn-flat btn-outline-info">Buat Surat</a><a
                                                     href="<?= base_url('m-admin/pelayanan-surat/delete/' . $row['id_surat']) ?>"
                                                     class="btn btn-flat btn-outline-danger">Delete</a>
                                             </div>
                                         </td>
                                         <td><?= $row['kode_surat'] ?></td>
                                         <td><?= $row['nama_surat'] ?></td>
-                                        <td><?= $row['url_surat'] ?></td>
+                                        <td><a
+                                                href="<?= base_url('document/' . $row['file_temp_surat']) ?>"><?= $row['file_temp_surat'] ?></a>
+                                        </td>
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>
@@ -89,8 +90,8 @@
                                 <input class="form-control" type="text" name="nama_surat" id="nama_surat">
                             </div>
                             <div class="form-group row">
-                                <label for="inputName" class="col-sm-2 col-form-label">URL</label>
-                                <input class="form-control" type="text" name="url" id="url">
+                                <label for="inputName" class="col-sm-2 col-form-label">File Template</label>
+                                <input class="form-control" type="file" name="file" id="file">
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">

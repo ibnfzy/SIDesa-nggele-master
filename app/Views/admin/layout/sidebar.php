@@ -114,9 +114,9 @@
                 <!-- Pelayanan -->
                 <li class="nav-item">
                     <a href="#" class="nav-link <?= $active = ($dir == 'Pelayanan') ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-comment"></i>
+                        <i class="nav-icon fas fa-file-alt"></i>
                         <p>
-                            Pelayanan
+                            Pelayanan Surat
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -125,27 +125,28 @@
                             <a href="<?= base_url('m-admin/pelayanan-surat') ?>"
                                 class="nav-link <?= $active = ($title == 'Table Surat') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Surat - surat</p>
+                                <p>Format Surat</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?= $active = ($title == 'Pelayanan Surat') ? 'active' : '' ?>">
+                            <a href="<?= base_url('m-admin/arsip-surat') ?>"
+                                class="nav-link <?= $active = ($title == 'Pelayanan Surat') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Pelayanan Persuratan</p>
+                                <p>Arsip Surat</p>
                             </a>
                         </li>
                     </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('m-admin/aspirasi') ?>"
-                                class="nav-link <?= $active = ($title == 'Pelayanan Aspirasi') ? 'active' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pelayanan Aspirasi</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('m-admin/aspirasi') ?>"
+                        class="nav-link <?= $active = ($title == 'Pelayanan Aspirasi') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-comment"></i>
+                        <p>
+                            Pelayanan Aspirasi
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('m-admin/berita') ?>"

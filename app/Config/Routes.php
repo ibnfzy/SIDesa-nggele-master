@@ -125,9 +125,13 @@ $routes->post('m-admin/pelayanan-surat/store', 'Admin::store_surat');
 $routes->post('m-admin/pelayanan-surat/update/(:any)', 'Admin::update_surat/$1');
 $routes->get('m-admin/pelayanan-surat/delete/(:any)', 'Admin::delete_surat/$1');
 $routes->get('m-admin/pelayanan-surat/create/(:any)', 'Admin::create_surat/$1');
+$routes->post('m-admin/pelayanan-surat/log/(:any)', 'Admin::log_surat/$1');
 
-// ! Route PRINT SURAT .PDF
-$routes->get('m-admin/print/surat-ket-tidak-mampu/(:any)', 'PrintPdf::surat_ket_tidak_mampu/$1');
+// * Route Arsip Surat
+$routes->get('m-admin/arsip-surat', 'Admin::arsip_surat');
+$routes->get('m-admin/arsip-surat/download/(:any)', 'Admin::download_surat/$1');
+$routes->get('m-admin/arsip-surat/delete/(:any)', 'Admin::delete_log_surat/$1');
+
 
 // ? Route untuk tampilan login
 // ? Route index login page
