@@ -48,7 +48,9 @@
                                 <div class="form-group">
                                     <label for="jenis">Jenis</label>
                                     <select name="jenis" id="jenis" class="form-control" required>
-                                        <option value="pengumuman">Pengumuman</option>
+                                        <option value="Pengumuman">Pengumuman</option>
+                                        <option value="Pendidikan">Pendidikan</option>
+                                        <option value="Pemerintah">Pemerintah</option>
                                     </select>
                                 </div>
                             </div>

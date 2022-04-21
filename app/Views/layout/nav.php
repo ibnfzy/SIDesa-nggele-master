@@ -24,7 +24,7 @@
                     </li>
                     <li class="menu-parent">Pelayanan
                         <ul class="sub-menu">
-                            <li><a href="#">Pelayanan Aspirasi</a></li>
+                            <li><a href="<?= base_url('aspirasi') ?>">Pelayanan Aspirasi</a></li>
                         </ul>
                     </li>
                     <li><a href="<?= base_url('berita') ?>">Berita</a></li>

@@ -37,7 +37,6 @@
                                         <th>Gambar</th>
                                         <th>Nama Lengkap</th>
                                         <th>Username</th>
-                                        <th>Jenis</th>
                                         <th>Login Terakhir</th>
                                         <th>Action</th>
                                     </tr>
@@ -51,7 +50,6 @@
                                         </td>
                                         <td><?= $row['fullname'] ?></td>
                                         <td><?= $row['username'] ?></td>
-                                        <td><?= $row['type'] ?></td>
                                         <td><?= $row['last_login'] ?></td>
                                         <td>
                                             <div class="btn-group d-flex justify-content-center"><a

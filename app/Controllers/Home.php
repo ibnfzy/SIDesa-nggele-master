@@ -2,14 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\M_aspirasi;
 use App\Models\M_berita;
 use App\Models\M_keunggulan;
 use App\Models\M_pemerintah;
+use App\Models\M_penduduk;
 use App\Models\M_peta;
 use App\Models\M_profil;
 use App\Models\M_sejarah;
 use App\Models\M_slider;
 use App\Models\M_visimisi;
+use CodeIgniter\HTTP\Response;
 
 class Home extends BaseController
 {
@@ -24,6 +27,8 @@ class Home extends BaseController
 	protected $petaM;
 	protected $visimisiM;
 	protected $pemerintahM;
+	protected $penduduk;
+	protected $aspirasi;
 
 	public function __construct()
 	{
@@ -36,6 +41,8 @@ class Home extends BaseController
 		$this->petaM = new M_peta();
 		$this->visimisiM = new M_visimisi();
 		$this->pemerintahM = new M_pemerintah();
+		$this->penduduk = new M_penduduk();
+		$this->aspirasi = new M_aspirasi();
 		$this->berita = $this->db->table('berita');
 		$this->baru = $this->berita->orderBy('id_berita', 'DESC')->limit(4)->get()->getResultArray();
 
@@ -197,5 +204,36 @@ class Home extends BaseController
 		];
 
 		return view('pemerintah', $data);
+	}
+
+	public function aspirasi(): string
+	{
+		$data = [
+			'title' => 'Pelayanan aspirasi',
+			'baru' => $this->baru
+		];
+
+		return view('aspirasi', $data);
+	}
+
+	public function store_aspirasi(): \CodeIgniter\HTTP\RedirectResponse
+	{
+		$get = $this->penduduk->where('NIK', $this->request->getPost('nik'))->first();
+
+		if ($get) {
+			$data = [
+				'NIK' => $this->request->getPost('nik'),
+				'isi_aspirasi' => $this->request->getPost('aspirasi'),
+				'tgl_kirim' => date('Y-m-d')
+			];
+
+			$this->aspirasi->save($data);
+
+			return redirect()->to(base_url('aspirasi'))->with('type-status', 'success')
+				->with('message', 'Aspirasi berhasil dikirim');
+		} else {
+			return redirect()->to(base_url('aspirasi'))->with('type-status', 'error')
+				->with('message', 'Aspirasi gagal dikirim, nik tidak terdaftar pada database');
+		}
 	}
 }

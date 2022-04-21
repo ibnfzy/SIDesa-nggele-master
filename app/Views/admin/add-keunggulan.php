@@ -49,7 +49,10 @@
                                 <div class="form-group">
                                     <label for="jenis">Jenis</label>
                                     <select name="jenis" id="jenis" class="form-control" required>
-                                        <option value="pertanian">Pertanian</option>
+                                        <option value="Pertanian">Pertanian</option>
+                                        <option value="Laut">Laut</option>
+                                        <option value="Infrastruktur">infrastruktur</option>
+                                        <option value="Lainnya">Lainnya</option>
                                     </select>
                                 </div>
                             </div>

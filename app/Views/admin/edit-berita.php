@@ -50,7 +50,13 @@
                                 <div class="form-group">
                                     <label for="jenis">Jenis</label>
                                     <select name="jenis" id="jenis" class="form-control">
-                                        <option value="pengumuman">Pengumuman</option>
+                                        <optgroup label="Pilihan Sebelumnya">
+                                            <option selected value="<?= $berita['jenis_berita'] ?>">
+                                                <?= $berita['jenis_berita'] ?></option>
+                                        </optgroup>
+                                        <option value="Pengumuman">Pengumuman</option>
+                                        <option value="Pendidikan">Pendidikan</option>
+                                        <option value="Pemerintah">Pemerintah</option>
                                     </select>
                                 </div>
                             </div>

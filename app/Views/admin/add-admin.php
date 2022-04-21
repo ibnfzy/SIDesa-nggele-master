@@ -50,12 +50,6 @@
                                     <input type="text" name="username" id="username" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="jenis">Jenis</label>
-                                    <select name="jenis" id="jenis" class="form-control">
-                                        <option value="pegawai">Pegawai</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" id="password" class="form-control">
                                 </div>

@@ -34,7 +34,6 @@
                                     <tr>
                                         <th>~</th>
                                         <th>NIK</th>
-                                        <th>Kategori</th>
                                         <th>Tanggal Kirim</th>
                                         <th>Action</th>
                                     </tr>
@@ -45,7 +44,6 @@
                                     <tr>
                                         <td><?= $item['id_aspirasi'] ?></td>
                                         <td><?= $item['NIK'] ?></td>
-                                        <td><?= $item['kategori_aspirasi'] ?></td>
                                         <td><?= $item['tgl_kirim'] ?></td>
                                         <td>
 

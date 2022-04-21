@@ -44,6 +44,8 @@ $routes->get('/sejarah', 'Home::sejarah');
 $routes->get('/peta', 'Home::peta');
 $routes->get('/visi-misi', 'Home::visimisi');
 $routes->get('/pemerintah', 'Home::pemerintah');
+$routes->get('/aspirasi', 'Home::aspirasi');
+$routes->post('aspirasi/store', 'Home::store_aspirasi');
 
 // * Route untuk tampilan admin
 // * Route index admin-page / menu dashboard

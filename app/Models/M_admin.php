@@ -12,7 +12,6 @@ class M_admin extends Model
         'fullname',
         'username',
         'password',
-        'type',
         'gambar',
         'last_login'
     ];

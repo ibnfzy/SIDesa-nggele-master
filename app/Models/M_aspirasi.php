@@ -11,7 +11,6 @@ class M_aspirasi extends Model
     protected $allowedFields = [
         'NIK',
         'isi_aspirasi',
-        'tgl_kirim',
-        'kategori_aspirasi'
+        'tgl_kirim'
     ];
 }

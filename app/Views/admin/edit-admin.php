@@ -53,15 +53,6 @@
                                         value="<?= $admin['username'] ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="jenis">Jenis</label>
-                                    <select name="jenis" id="jenis" class="form-control">
-                                        <option value="pegawai"
-                                            <?= $select = ($admin['type'] == 'pegawai') ? 'Selected' : '' ?>>
-                                            Pegawai
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="Password Lama">

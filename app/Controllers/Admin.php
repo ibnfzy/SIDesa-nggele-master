@@ -20,10 +20,26 @@ class Admin extends BaseController
 {
     public function index(): string
     {
+        $penduduk = new M_penduduk();
+        $berita = new M_berita();
+        $keunggulan = new M_keunggulan();
+        $aspirasi = new M_aspirasi();
+        $log = new M_log_surat();
+        $profil = new M_profil();
+
+        $get = $profil->find(1);
+
         $data = [
             'title' => 'Dashboard',
-            'parentdir' => ''
+            'penduduk' => count($penduduk->findAll()),
+            'berita' => count($berita->findAll()),
+            'keunggulan' => count($keunggulan->findAll()),
+            'aspirasi' => count($aspirasi->findAll()),
+            'log' => count($log->findAll()),
+            'gambar' => $get['gambar'],
+            'isi_profile' => $get['isi_profile']
         ];
+
         return view('admin/dashboard', $data);
     }
 
@@ -900,12 +916,18 @@ class Admin extends BaseController
     public function detail_aspirasi($id): string
     {
         $aspirasi = new M_aspirasi();
+        $penduduk = new M_penduduk();
+
+        $get = $aspirasi->find($id);
+        $getPenduduk = $penduduk->where('NIK', $get['NIK'])->first();
 
         $data = [
-            'title' => 'Detail Aspirasi'
+            'title' => 'Detail Aspirasi',
+            'NIK' => $get['NIK'],
+            'nama' => $getPenduduk['nama'],
+            'tgl_kirim' => $get['tgl_kirim'],
+            'isi' => $get['isi_aspirasi']
         ];
-
-        $data['pelayanan'] = $aspirasi->find($id);
 
         return view('admin/detail-aspirasi', $data);
     }
