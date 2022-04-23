@@ -76,6 +76,14 @@ class Admin extends BaseController
 
         $passConfirm = $this->request->getPost('confirm');
 
+        $username = $this->request->getPost('username');
+        $checkUsername = $admin->where('username', $username)->first();
+
+        if ($checkUsername) {
+            return redirect()->to(base_url('m-admin/admin/add'))->with('type-status', 'error')
+                ->with('message', 'Username tidak tersedia');
+        }
+
         if ($this->request->getPost('password') == $passConfirm) {
 
             $data = [
@@ -87,7 +95,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(ROOTPATH . 'public/admin/uploads');
+                $img->move('admin/uploads');
             }
 
             $admin->save($data);
@@ -136,7 +144,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(base_url('admin/uploads/'));
+                $img->move('admin/uploads');
             }
 
             $admin->update($id, $data);
@@ -188,7 +196,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(ROOTPATH . 'public/admin/uploads');
+                $img->move('admin/uploads');
             }
 
             $profil->update($id, $data);
@@ -359,7 +367,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(ROOTPATH . 'public/admin/uploads');
+                $img->move('admin/uploads');
             }
 
             $keunggulan->save($data);
@@ -420,7 +428,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(ROOTPATH . 'public/admin/uploads');
+                $img->move('admin/uploads');
             }
 
             return redirect()->to(base_url('m-admin/keunggulan-desa'))->with('type-status', 'success')
@@ -481,7 +489,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(ROOTPATH . 'public/admin/uploads');
+                $img->move('admin/uploads');
             }
 
             $berita->save($data);
@@ -538,7 +546,7 @@ class Admin extends BaseController
             ];
 
             if ($img->isValid() && !$img->hasMoved()) {
-                $img->move(base_url('admin/uploads/'));
+                $img->move('admin/uploads');
             }
 
             $berita->update($id, $data);
@@ -782,7 +790,7 @@ class Admin extends BaseController
             ];
 
             if (!$file->hasMoved()) {
-                $file->move(ROOTPATH . 'public/document');
+                $file->move('document/');
             }
 
             $surat->save($data);
@@ -880,7 +888,7 @@ class Admin extends BaseController
 
         $log->update($id, $data);
 
-        $document = file_get_contents(ROOTPATH . 'public/document/' . $getSurat['file_temp_surat']);
+        $document = file_get_contents('document/' . $getSurat['file_temp_surat']);
         $document = str_replace("[no_surat]", $get['no_surat'], $document);
         $document = str_replace("[kode_surat]", $getSurat['kode_surat'], $document);
         $document = str_replace("[nama]", $getPenduduk['nama'], $document);

@@ -22,7 +22,6 @@
                 </div>
             </div>
             <?php endforeach ?>
-            <?= $pager->links('keunggulan_desa', 'keunggulan_page') ?>
         </div>
         <aside>
             <!-- New Letter Ends -->
@@ -48,6 +47,7 @@
             </div>
         </aside>
         <!-- Pagination -->
+        <?= $pager->links('keunggulan_desa', 'berita_page') ?>
 
     </div>
 </div>
