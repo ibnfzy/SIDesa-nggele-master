@@ -50,7 +50,8 @@
                                         </td>
                                         <td><?= $row['fullname'] ?></td>
                                         <td><?= $row['username'] ?></td>
-                                        <td><?= $row['last_login'] ?></td>
+                                        <td><?= $lastlog = ($row['last_login'] == null) ? 'Belum Pernah' : $row['last_login']; ?>
+                                        </td>
                                         <td>
                                             <div class="btn-group d-flex justify-content-center"><a
                                                     href="<?= base_url('m-admin/admin/edit/' . $row['id_admin']) ?>"
